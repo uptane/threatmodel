@@ -1,37 +1,38 @@
 
-| **Asset ID** | **Asset Name**                           | **Confidentiality** | **Integrity** | **Availability** |
-|--------------|------------------------------------------|---------------------|---------------|------------------|
-| ASSET_01     | Firmware and Software Images             | ✓                   | ✓             | ✓                |
-| ASSET_02     | Update Server                            | ✓                   | ✓             | ✓                |
-| ASSET_03     | Device Authentication Credentials        | ✓                   | ✓             |                  |
-| ASSET_04     | Update Authentication Credentials        | ✓                   | ✓             |                  |
-| ASSET_05     | Communication Channels                   | ✓                   | ✓             | ✓                |
-| ASSET_06     | Update Client Software                   |                     | ✓             | ✓                |
-| ASSET_07     | Backup and Recovery Mechanism            |                     | ✓             | ✓                |
-| ASSET_08     | Update Metadata                          |                     | ✓             |                  |
-| ASSET_09     | Device Configuration Data                | ✓                   | ✓             |                  |
-| ASSET_10     | User Data                                | ✓                   | ✓             | ✓                |
-| ASSET_11     | Logging and Monitoring Systems           | ✓                   | ✓             | ✓                |
-| ASSET_12     | Third-party Libraries and Dependencies   |                     | ✓             | ✓                |
-| ASSET_13     | Cryptographic Keys for Secure Boot       | ✓                   | ✓             |                  |
-| ASSET_14     | Update Rollout Mechanism                 |                     | ✓             | ✓                |
-| ASSET_15     | Rollback Mechanism                       |                     | ✓             | ✓                |
-| ASSET_16     | Director Repository                      | ✓                   | ✓             | ✓                |
-| ASSET_17     | Image Repository                         | ✓                   | ✓             | ✓                |
-| ASSET_18     | Root Metadata                            | ✓                   | ✓             |                  |
-| ASSET_19     | Targets Metadata                         |                     | ✓             |                  |
-| ASSET_20     | Snapshot Metadata                        |                     | ✓             |                  |
-| ASSET_21     | Timestamp Metadata                       |                     | ✓             |                  |
-| ASSET_22     | Delegation Metadata                      |                     | ✓             |                  |
-| ASSET_23     | Compromise-Resilient Keys                | ✓                   | ✓             |                  |
-| ASSET_24     | ECU (Electronic Control Unit) Manifest   | ✓                   | ✓             |                  |
-| ASSET_25     | Vehicle Version Manifest                 | ✓                   | ✓             |                  |
-| ASSET_26     | Uptane Primary ECU                       | ✓                   | ✓             | ✓                |
-| ASSET_27     | Uptane Secondary ECU                     | ✓                   | ✓             | ✓                |
-| ASSET_28     | Time Servers                             | ✓                   | ✓             | ✓                |
-| ASSET_29     | Revocation Mechanisms                    |                     | ✓             | ✓                |
-| ASSET_30     | Key Storage and Management               | ✓                   | ✓             | ✓                |
-| ASSET_31     | Vehicle-to-Server Communication Protocols | ✓                   | ✓             | ✓                |
+| **Asset ID** | **Asset Name**                           | **Confidentiality** | **Integrity** | **Availability** | **Justification**                                                                                              |
+|--------------|------------------------------------------|---------------------|---------------|------------------|----------------------------------------------------------------------------------------------------------------|
+| ASSET_01     | Firmware and Software Images             | ✓                   | ✓             | ✓                | **C:** Unauthorized access could lead to the disclosure of sensitive code. **I:** Ensures updates aren't tampered with to inject malicious code. **A:** Devices need to access updates to remain secure. |
+| ASSET_02     | Update Server                            | ✓                   | ✓             | ✓                | **C:** Protecting data on the server prevents unauthorized disclosure. **I:** Critical to ensure updates are legitimate. **A:** If unavailable, devices can't get updates, increasing risk. |
+| ASSET_03     | Device Authentication Credentials        | ✓                   | ✓             |                  | **C:** Disclosure could allow attackers to impersonate devices. **I:** Tampering could enable unauthorized access. **A not selected:** These are not needed at all times; only during authentication. |
+| ASSET_04     | Update Authentication Credentials        | ✓                   | ✓             |                  | **C:** Compromise could allow attackers to sign malicious updates. **I:** Ensuring authenticity of updates is crucial. **A not selected:** Availability is not crucial as these are used primarily during signing. |
+| ASSET_05     | Communication Channels                   | ✓                   | ✓             | ✓                | **C:** Secures data in transit against interception. **I:** Prevents data tampering during transmission. **A:** Communication must be reliable for updates to be distributed. |
+| ASSET_06     | Update Client Software                   |                     | ✓             | ✓                | **I:** Ensures the update process is secure and cannot be compromised. **A:** Needs to be operational to apply updates. **C not selected:** This software does not typically handle sensitive information directly. |
+| ASSET_07     | Backup and Recovery Mechanism            |                     | ✓             | ✓                | **I:** Integrity is crucial for restoring systems to a known good state. **A:** Needs to be available in case of failure. **C not selected:** These mechanisms do not usually contain sensitive data. |
+| ASSET_08     | Update Metadata                          |                     | ✓             |                  | **I:** Ensures that only authorized updates are applied. **C not selected:** Metadata itself is not typically sensitive. **A not selected:** Availability is less critical because metadata is less frequently accessed than the updates themselves. |
+| ASSET_09     | Device Configuration Data                | ✓                   | ✓             |                  | **C:** Contains sensitive configuration settings. **I:** Ensuring it remains unchanged is critical for proper device operation. **A not selected:** Usually, availability is not as critical; configurations are set and less frequently accessed. |
+| ASSET_10     | User Data                                | ✓                   | ✓             | ✓                | **C:** Protects user privacy. **I:** Data integrity is crucial to prevent unauthorized changes. **A:** Must be accessible to users whenever needed. |
+| ASSET_11     | Logging and Monitoring Systems           | ✓                   | ✓             | ✓                | **C:** Logs may contain sensitive information. **I:** Log integrity ensures accurate forensic analysis. **A:** Needs to be constantly available for security monitoring and incident response. |
+| ASSET_12     | Third-party Libraries and Dependencies   |                     | ✓             | ✓                | **I:** Ensuring they are secure is critical to prevent vulnerabilities. **A:** Must be available to function correctly in the software. **C not selected:** They are part of the application, not inherently sensitive. |
+| ASSET_13     | Cryptographic Keys for Secure Boot       | ✓                   | ✓             |                  | **C:** Must remain confidential to prevent unauthorized access. **I:** Ensure only trusted firmware is booted. **A not selected:** These keys are needed primarily at boot time, not continuously. |
+| ASSET_14     | Update Rollout Mechanism                 |                     | ✓             | ✓                | **I:** Ensures updates are deployed correctly and securely. **A:** Needs to be operational to manage updates effectively. **C not selected:** The rollout mechanism itself doesn’t manage sensitive data directly. |
+| ASSET_15     | Rollback Mechanism                       |                     | ✓             | ✓                | **I:** Protects against reverting to insecure states. **A:** Must be available to recover from failed updates. **C not selected:** Rollback mechanisms typically do not handle sensitive information. |
+| ASSET_16     | Director Repository                      | ✓                   | ✓             | ✓                | **C:** Must protect sensitive update directives. **I:** Ensures the authenticity of update instructions. **A:** Needs to be accessible for effective update management. |
+| ASSET_17     | Image Repository                         | ✓                   | ✓             | ✓                | **C:** Protects stored update files. **I:** Ensures stored images are untampered. **A:** Must be available to deliver updates to devices. |
+| ASSET_18     | Root Metadata                            | ✓                   | ✓             |                  | **C:** Contains critical trust information. **I:** Compromising it could undermine the entire security model. **A not selected:** This metadata is accessed infrequently compared to other components. |
+| ASSET_19     | Targets Metadata                         |                     | ✓             |                  | **I:** Ensures only authorized updates are installed. **C not selected:** Metadata doesn’t contain highly sensitive information. **A not selected:** Availability is less critical than integrity. |
+| ASSET_20     | Snapshot Metadata                        |                     | ✓             |                  | **I:** Critical for preventing replay attacks. **C not selected:** Snapshot metadata is not typically sensitive. **A not selected:** Accessed only when validating other metadata. |
+| ASSET_21     | Timestamp Metadata                       |                     | ✓             |                  | **I:** Ensures only current updates are applied. **C not selected:** Timestamp metadata contains non-sensitive information. **A not selected:** Mainly used to validate update freshness, not needed continuously. |
+| ASSET_22     | Delegation Metadata                      |                     | ✓             |                  | **I:** Controls who is authorized to sign updates. **C not selected:** Delegation rules are not inherently sensitive. **A not selected:** Not continuously needed, only checked when updates are signed. |
+| ASSET_23     | Compromise-Resilient Keys                | ✓                   | ✓             |                  | **C:** Confidentiality limits damage from key exposure. **I:** Ensures keys are used only for their intended purpose. **A not selected:** Availability of these keys is not critical at all times. |
+| ASSET_24     | ECU (Electronic Control Unit) Manifest   | ✓                   | ✓             |                  | **C:** Contains information about the software state of ECUs. **I:** Accuracy is critical for update decisions. **A not selected:** These manifests are accessed less frequently, primarily during updates. |
+| ASSET_25     | Vehicle Version Manifest                 | ✓                   | ✓             |                  | **C:** Provides an overview of the vehicle's software state. **I:** Accurate manifests are essential for security. **A not selected:** Typically checked during maintenance or update, not continuously. |
+| ASSET_26     | Uptane Primary ECU                       | ✓                   | ✓             | ✓                | **C:** Must protect communication and control over updates. **I:** Ensures the security of the overall update process. **A:** Needs to be operational to manage updates for secondary ECUs. |
+| ASSET_27     | Uptane Secondary ECU                     | ✓                   | ✓             | ✓                | **C:** Maintains secure communication with the Primary ECU. **I:** Protects specific functions and data. **A:** Must be available to perform its designated functions. |
+| ASSET_28     | Time Servers                             | ✓                   | ✓             | ✓                | **C:** Ensures secure, accurate time synchronization. **I:** Prevents timing attacks and ensures update freshness. **A:** Needs to be consistently available to maintain accurate system time. |
+| ASSET_29     | Revocation Mechanisms                    |                     | ✓             | ✓                | **I:** Ensures compromised keys are revoked effectively. **A:** Must be available to revoke keys in a timely manner. **C not selected:** Revocation information is typically public. |
+| ASSET_30     | Key Storage and Management               | ✓                   | ✓             | ✓                | **C:** Must prevent unauthorized access to cryptographic keys. **I:** Ensures keys are valid and untampered. **A:** Keys need to be accessible for secure operations. |
+| ASSET_31     | Vehicle-to-Server Communication Protocols | ✓                   | ✓             | ✓                | **C:** Secures data from interception. **I:** Prevents tampering with data in transit. **A:** Reliable communication is necessary for updates and monitoring. |
+
 
 ### Key:
 
@@ -39,10 +40,14 @@
 - **Integrity (I):** Ensures that data is accurate, consistent, and protected from unauthorized modification.
 - **Availability (A):** Ensures that information and resources are accessible to authorized users when needed.
 
-### Summary:
+### Justification Summary:
 
-- **Confidentiality:** Focused on protecting sensitive data, particularly for assets like authentication credentials, user data, and cryptographic keys.
-- **Integrity:** A critical aspect for most assets to ensure that data, metadata, and software are not tampered with. This is crucial for update-related data to prevent unauthorized modifications.
-- **Availability:** Essential for systems that need to function reliably, like update servers, backup and recovery mechanisms, and communication channels.
+- **Confidentiality (C):** Applies to assets where unauthorized disclosure could lead to security breaches, data theft, or privacy violations. Key assets include authentication credentials, sensitive metadata, and user data.
+- **Integrity (I):** Applies to assets where unauthorized modification could compromise the security, functionality, or reliability of the system. This is critical for all forms of metadata, firmware, software images, and cryptographic keys.
+- **Availability (A):** Applies to assets that must be reliably accessible to ensure proper system functionality and security operations, such as update servers, communication channels, and logging systems.
 
-This table provides a clear view of how each asset aligns with the CIA triad, helping prioritize security measures and focus on maintaining the confidentiality, integrity, and availability of critical components in the OTA update ecosystem.
+### Additional Explanation:
+
+- **Not Selecting Confidentiality:** For some assets, confidentiality isn't selected because they don't handle sensitive data directly or the data they manage isn't sensitive in nature (e.g., metadata like snapshot and timestamp metadata). Their primary role is in ensuring the integrity of other processes, not in protecting confidential information.
+- **Not Selecting Integrity:** Integrity is always selected unless the asset’s primary function is confidentiality or availability only. Almost all assets need integrity to ensure they function correctly and securely.
+- **Not Selecting Availability:** Availability is not critical for assets that are accessed inf
