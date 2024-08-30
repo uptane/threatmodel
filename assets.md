@@ -1,3 +1,5 @@
+# List of General OTA Assets (not Uptane specific)
+
 ### 1. **Firmware and Software Images**
    - **Description:** The actual firmware or software files being transmitted via OTA updates.
    - **Importance:** Ensuring the integrity and authenticity of these files is critical to prevent malicious software from being installed on devices.
