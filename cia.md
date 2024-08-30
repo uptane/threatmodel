@@ -50,4 +50,4 @@
 
 - **Not Selecting Confidentiality:** For some assets, confidentiality isn't selected because they don't handle sensitive data directly or the data they manage isn't sensitive in nature (e.g., metadata like snapshot and timestamp metadata). Their primary role is in ensuring the integrity of other processes, not in protecting confidential information.
 - **Not Selecting Integrity:** Integrity is always selected unless the asset’s primary function is confidentiality or availability only. Almost all assets need integrity to ensure they function correctly and securely.
-- **Not Selecting Availability:** Availability is not critical for assets that are accessed inf
+- **Not Selecting Availability:** Availability is not critical for assets that are accessed infrequently or only during specific operations (e.g., root metadata, some types of update metadata). These assets don’t need to be highly available at all times but must be secure when they are accessed.
