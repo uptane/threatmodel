@@ -296,3 +296,54 @@ STRIDE is a model for identifying computer security threats. It stands for:
    - **Threat:** By compromising logging and monitoring systems, an attacker could potentially gain access to sensitive information or escalate their privileges within the system, bypassing security controls.
    - **Mitigation:** Use role-based access control (RBAC) to limit who can access and manage the logging systems. Ensure logging systems run with the least privilege necessary. Regularly audit the access and configuration of logging systems to detect unauthorized changes.
 
+### Asset 12: Third-party Libraries and Dependencies
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could introduce malicious third-party libraries by impersonating legitimate sources, tricking developers or systems into including them in the software.
+   - **Mitigation:** Use package signing and verification to ensure that only libraries from trusted sources are integrated. Implement dependency management tools that can verify the authenticity of third-party libraries before they are used.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker could tamper with third-party libraries, injecting malicious code that could be executed when the library is used by the device.
+   - **Mitigation:** Use checksums and cryptographic hashes to verify the integrity of third-party libraries. Regularly audit and update libraries to the latest secure versions. Utilize automated tools to scan for known vulnerabilities in libraries.
+
+3. **Repudiation**
+   - **Threat:** A third-party provider could deny that a specific library version was released by them, making it difficult to trace back the origin of a vulnerability or issue.
+   - **Mitigation:** Maintain secure logs of third-party library usage, including version numbers and the source from which they were obtained. Use signed manifests to track and verify the origin of all third-party code.
+
+4. **Information Disclosure**
+   - **Threat:** Third-party libraries might inadvertently expose sensitive information, such as API keys, internal algorithms, or user data, if not properly secured.
+   - **Mitigation:** Conduct regular security audits and code reviews of third-party libraries to identify potential information disclosure risks. Use sandboxing techniques to limit the access and exposure of third-party code. Ensure libraries follow best practices for data handling and security.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** Vulnerabilities in third-party libraries could be exploited to cause denial of service, either by crashing the application or exhausting system resources.
+   - **Mitigation:** Monitor for updates and patches for third-party libraries, and apply them promptly. Use automated tools to test and identify vulnerabilities in dependencies that could lead to DoS attacks. Implement error handling and resource management to mitigate the impact of library failures.
+
+6. **Elevation of Privilege**
+   - **Threat:** Exploiting vulnerabilities in third-party libraries could allow an attacker to escalate privileges within the application or system, gaining unauthorized access to sensitive functions or data.
+   - **Mitigation:** Use the principle of least privilege when integrating third-party libraries, ensuring they run with minimal permissions. Regularly update and patch libraries to protect against known vulnerabilities. Use runtime application self-protection (RASP) and application security testing to detect and prevent exploitation of vulnerable libraries.
+
+### Asset 13: Cryptographic Keys for Secure Boot
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could attempt to use stolen or forged cryptographic keys to impersonate a legitimate source during the secure boot process, allowing unauthorized or malicious firmware to run.
+   - **Mitigation:** Use strong key management practices, including hardware security modules (HSMs) or trusted platform modules (TPMs) to store keys securely. Implement certificate-based authentication to verify the legitimacy of the keys being used.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker could attempt to tamper with cryptographic keys or the secure boot process to bypass security checks, enabling the execution of unauthorized firmware.
+   - **Mitigation:** Protect keys using hardware-based storage to prevent unauthorized access or tampering. Use digital signatures to verify the integrity of firmware before execution. Implement secure update mechanisms to ensure that only authorized updates to keys or boot processes can occur.
+
+3. **Repudiation**
+   - **Threat:** An entity could deny the use or compromise of specific cryptographic keys, making it difficult to trace the source of unauthorized actions or breaches.
+   - **Mitigation:** Implement secure logging to record all use of cryptographic keys, including successful and failed boot attempts. Use digital signatures and time stamps to create an audit trail that can be reviewed for accountability.
+
+4. **Information Disclosure**
+   - **Threat:** If cryptographic keys are exposed, an attacker could gain access to sensitive information, including the ability to decrypt communications or sign malicious firmware.
+   - **Mitigation:** Use encryption to protect cryptographic keys both in storage and in transit. Implement access controls to limit who can access keys. Regularly audit access to key management systems to detect and respond to unauthorized access attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt the secure boot process by targeting cryptographic keys or the mechanisms that use them, preventing devices from booting securely.
+   - **Mitigation:** Implement redundancy in secure boot infrastructure to prevent single points of failure. Use backup keys and mechanisms to ensure that devices can still boot securely in case of an issue. Monitor for signs of tampering or attack on boot processes and respond promptly.
+
+6. **Elevation of Privilege**
+   - **Threat:** Compromising cryptographic keys could allow an attacker to bypass security controls, enabling unauthorized access to system functions or sensitive data.
+   - **Mitigation:** Use the principle of least privilege to restrict access to cryptographic keys. Implement multi-factor authentication and strong access control policies for key management. Regularly review and rotate cryptographic keys to minimize the impact of potential compromises.
