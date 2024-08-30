@@ -452,3 +452,55 @@ STRIDE is a model for identifying computer security threats. It stands for:
    - **Threat:** If an attacker can compromise the revocation mechanism, they could potentially bypass revocation checks, allowing them to use compromised credentials to gain unauthorized access or escalate privileges.
    - **Mitigation:** Enforce strict access controls on the revocation mechanism. Use the principle of least privilege to restrict who can initiate or modify revocation actions. Regularly review and update security policies related to revocation to ensure they address potential vulnerabilities.
 
+### Asset 18: Key Storage and Management
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could attempt to impersonate a legitimate user or system to gain access to cryptographic keys stored in the key management system, potentially leading to unauthorized access or data manipulation.
+   - **Mitigation:** Use strong authentication and authorization mechanisms, such as multi-factor authentication and role-based access control (RBAC), to ensure that only authorized personnel and systems can access cryptographic keys. Implement hardware-based authentication where possible.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with cryptographic keys or key management data to alter encryption, decryption, or signing operations, potentially leading to data breaches or unauthorized actions.
+   - **Mitigation:** Use hardware security modules (HSMs) or trusted platform modules (TPMs) to securely store cryptographic keys and prevent tampering. Implement integrity checks and use digital signatures to ensure the authenticity and integrity of key management data.
+
+3. **Repudiation**
+   - **Threat:** An entity could deny having accessed or used specific cryptographic keys, making it difficult to trace the origin of actions or detect unauthorized use.
+   - **Mitigation:** Implement secure, tamper-proof logging to record all access and usage of cryptographic keys. Logs should include details about who accessed the keys, when, and for what purpose. Use digital signatures on logs to ensure non-repudiation.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to key storage could lead to the exposure of cryptographic keys, potentially allowing attackers to decrypt sensitive data, impersonate legitimate users, or sign malicious code.
+   - **Mitigation:** Encrypt cryptographic keys both in storage and during transmission. Use access controls to limit who can access key storage systems. Regularly audit access to key management systems to detect unauthorized access attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt key storage and management systems, preventing legitimate users from accessing cryptographic keys and causing a failure in encryption, authentication, or other security operations.
+   - **Mitigation:** Implement redundancy and failover mechanisms for key storage and management systems to ensure availability. Use load balancing to manage access and prevent overload. Monitor key management systems for signs of DoS attacks and respond promptly.
+
+6. **Elevation of Privilege**
+   - **Threat:** Compromising key storage or management systems could allow an attacker to gain elevated privileges, enabling them to access sensitive functions, data, or systems.
+   - **Mitigation:** Enforce the principle of least privilege in key management systems, ensuring that only authorized personnel have access to sensitive keys. Regularly review and update access policies to reflect current security requirements. Use multi-factor authentication for accessing key management functions.
+
+### Asset 19: Vehicle-to-Server Communication Protocols
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate a legitimate vehicle or server to intercept communication, steal sensitive data, or inject malicious commands.
+   - **Mitigation:** Use strong mutual authentication protocols, such as TLS with client and server certificates, to ensure that both the vehicle and server can verify each other's identity. Employ unique device certificates to prevent impersonation.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might intercept and modify data transmitted between the vehicle and server, altering the content of updates, commands, or responses.
+   - **Mitigation:** Use end-to-end encryption, such as TLS, to protect the integrity of data during transmission. Implement cryptographic checksums and digital signatures to detect any unauthorized changes to the data.
+
+3. **Repudiation**
+   - **Threat:** Either the vehicle or server could deny having sent or received specific data, complicating the ability to trace actions and enforce accountability.
+   - **Mitigation:** Implement secure logging on both the vehicle and server to record all communications, including timestamps and data payloads. Use digital signatures to ensure that logs are tamper-proof and can serve as reliable evidence.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to vehicle-to-server communications could expose sensitive information, such as vehicle status, location, user data, or system vulnerabilities.
+   - **Mitigation:** Encrypt all communications using strong encryption standards to protect data confidentiality. Use secure protocols like TLS and implement access controls to limit who can view or intercept communications.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could flood the communication channel with requests or malicious traffic, disrupting the communication between the vehicle and server, potentially preventing updates or critical commands.
+   - **Mitigation:** Implement rate limiting, traffic filtering, and anomaly detection to manage and mitigate potential DoS attacks. Use redundant communication channels and load balancing to ensure continued service availability.
+
+6. **Elevation of Privilege**
+   - **Threat:** Compromising the communication protocol could allow an attacker to escalate privileges, enabling unauthorized access to sensitive data or control over vehicle functions.
+   - **Mitigation:** Use secure communication protocols with built-in access controls and authentication. Regularly audit communication channels for signs of unauthorized access or privilege escalation attempts. Enforce the principle of least privilege to limit access to sensitive commands and data.
+
