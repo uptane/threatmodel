@@ -532,9 +532,190 @@ STRIDE is a model for identifying computer security threats. It stands for:
    - **Threat:** Compromising snapshot metadata could allow an attacker to manipulate the update process, potentially installing unauthorized software or gaining access to restricted areas of the system.
    - **Mitigation:** Use strict access controls to limit who can create and modify snapshot metadata. Implement role-based access control to restrict the ability to manipulate snapshot information. Regularly review and update access policies to reflect current security needs.
 
+### Asset 21: Timestamp Metadata
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate a legitimate signer of the timestamp metadata, leading devices to accept incorrect or outdated metadata, potentially enabling rollback attacks or delaying critical updates.
+   - **Mitigation:** Use strong cryptographic signatures to authenticate the source of timestamp metadata. Ensure that only recognized, trusted keys are used to sign timestamp metadata. Implement certificate-based authentication to verify the identity of entities responsible for signing.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with timestamp metadata to alter timestamps or version information, which could cause devices to trust outdated or unauthorized metadata and updates.
+   - **Mitigation:** Implement cryptographic signatures and hash functions to protect the integrity of timestamp metadata. Devices should verify these signatures before using the metadata. Use secure transmission protocols to protect metadata from tampering during distribution.
+
+3. **Repudiation**
+   - **Threat:** An entity responsible for generating or signing timestamp metadata could deny having done so, complicating the ability to trace actions and maintain accountability.
+   - **Mitigation:** Implement secure logging to record all actions related to the creation, modification, and distribution of timestamp metadata. Use tamper-evident logging mechanisms, including digital signatures, to ensure the reliability and integrity of logs.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to timestamp metadata could reveal information about the timing and versions of updates, potentially aiding attackers in planning targeted attacks or exploiting timing-based vulnerabilities.
+   - **Mitigation:** Encrypt timestamp metadata both in storage and during transmission to protect it from unauthorized access. Implement access controls to restrict who can view or modify timestamp metadata. Regularly audit access to timestamp metadata to detect unauthorized attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt access to timestamp metadata, preventing devices from verifying the freshness of updates, potentially leaving them vulnerable or outdated.
+   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of timestamp metadata. Use monitoring and alerting to detect and respond to DoS attacks targeting timestamp metadata systems.
+
+6. **Elevation of Privilege**
+   - **Threat:** By compromising timestamp metadata, an attacker could manipulate timestamps to bypass security checks, potentially allowing unauthorized updates or gaining access to restricted functions.
+   - **Mitigation:** Enforce strict access controls on the creation and modification of timestamp metadata. Use the principle of least privilege to limit who can manage and sign timestamp metadata. Regularly review and update security policies related to timestamp metadata to ensure they address potential vulnerabilities.
+
+### Asset 22: Delegation Metadata
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate a legitimate entity authorized to delegate certain roles or permissions, potentially gaining unauthorized control over aspects of the update or security process.
+   - **Mitigation:** Use strong authentication methods, such as cryptographic certificates, to verify the identity of entities involved in delegating roles or permissions. Implement digital signatures to ensure that only authorized entities can issue delegation metadata.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with delegation metadata to alter roles, permissions, or authorized actions, potentially enabling unauthorized access or bypassing security controls.
+   - **Mitigation:** Implement cryptographic signatures to protect the integrity of delegation metadata. Use hash functions to detect any unauthorized changes. Ensure that delegation metadata is stored and transmitted securely to prevent tampering.
+
+3. **Repudiation**
+   - **Threat:** An entity involved in creating or modifying delegation metadata could deny having done so, complicating the ability to trace actions and enforce accountability.
+   - **Mitigation:** Implement secure logging to record all actions related to delegation metadata, including creation, modification, and usage. Use digital signatures to ensure that logs are tamper-proof and can serve as reliable records of actions.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to delegation metadata could expose sensitive information about roles, permissions, and organizational structure, potentially aiding attackers in planning targeted attacks.
+   - **Mitigation:** Encrypt delegation metadata both in storage and during transmission to protect it from unauthorized access. Implement access controls to restrict who can view or modify delegation metadata. Regularly audit access to the metadata to detect unauthorized attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt the creation, distribution, or processing of delegation metadata, preventing the proper assignment of roles and permissions and hindering operations.
+   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of delegation metadata systems. Use monitoring to detect and respond to DoS attacks targeting delegation processes.
+
+6. **Elevation of Privilege**
+   - **Threat:** By compromising delegation metadata, an attacker could assign themselves or others elevated roles or permissions, enabling unauthorized access to sensitive functions or data.
+   - **Mitigation:** Enforce strict access controls on the creation and modification of delegation metadata. Use role-based access control to limit who can assign roles and permissions. Regularly review and update delegation policies to reflect current security needs.
+
+### Asset 23: Compromise-Resilient Keys
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could use stolen or forged keys to impersonate a legitimate entity, such as a device or server, allowing unauthorized access to systems or data.
+   - **Mitigation:** Use strong cryptographic key management practices, including multi-factor authentication and hardware security modules (HSMs) to protect keys from unauthorized access. Regularly update and rotate keys to minimize the impact of key compromise.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with compromise-resilient keys or the data they protect, potentially bypassing security measures or altering sensitive information.
+   - **Mitigation:** Use hardware-based storage for keys to prevent tampering. Implement cryptographic signatures and integrity checks to detect unauthorized changes to keys and the data they protect. Use secure key exchange protocols to ensure key integrity during distribution.
+
+3. **Repudiation**
+   - **Threat:** Entities could deny having used specific keys for encryption, decryption, or signing, making it difficult to trace actions and ensure accountability.
+   - **Mitigation:** Implement secure logging to record all usage of compromise-resilient keys, including timestamps, the purpose of use, and the entity responsible. Use tamper-evident logging mechanisms to ensure that logs are reliable and cannot be altered.
+
+4. **Information Disclosure**
+   - **Threat:** If compromise-resilient keys are exposed, an attacker could gain access to sensitive information, decrypt communications, or impersonate legitimate entities.
+   - **Mitigation:** Encrypt keys both in storage and during transmission to protect them from unauthorized access. Use access controls to restrict who can access keys. Regularly audit key access logs to detect unauthorized attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt access to compromise-resilient keys, preventing legitimate encryption, decryption, or signing operations and causing a failure in security functions.
+   - **Mitigation:** Implement redundancy and failover mechanisms for key storage and management systems to ensure availability. Use load balancing to manage access and prevent overload. Monitor key usage for signs of DoS attacks and respond promptly.
+
+6. **Elevation of Privilege**
+   - **Threat:** Compromising compromise-resilient keys could allow an attacker to escalate privileges, enabling unauthorized access to sensitive functions, data, or systems.
+   - **Mitigation:** Enforce the principle of least privilege in key management systems, ensuring that only authorized personnel have access to sensitive keys. Regularly review and update access policies to reflect current security requirements. Use multi-factor authentication for accessing key management functions.
+
+### Asset 24: ECU Manifest
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate a legitimate ECU manifest, misleading the Primary ECU or other systems into trusting incorrect or malicious information about the ECU’s software or hardware state.
+   - **Mitigation:** Use digital signatures to authenticate ECU manifests. Each manifest should be signed by a trusted authority to verify its origin. Employ mutual authentication protocols to ensure that ECUs and the Primary ECU can verify each other’s identity.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with the data in the ECU manifest, altering version information, configuration details, or other critical data, potentially leading to security vulnerabilities or operational issues.
+   - **Mitigation:** Implement cryptographic hash functions and digital signatures to ensure the integrity of the ECU manifest. Secure storage and transmission of the manifest are essential to prevent unauthorized modifications.
+
+3. **Repudiation**
+   - **Threat:** Entities responsible for generating or using the ECU manifest could deny having provided or acted upon specific manifest information, making it difficult to track and audit updates and configurations.
+   - **Mitigation:** Implement secure logging to record the creation, distribution, and use of ECU manifests. Logs should include timestamps, origin details, and actions taken based on the manifest. Use tamper-evident logging mechanisms to ensure the reliability of logs.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to ECU manifests could expose sensitive information about the vehicle’s software, hardware configurations, and operational state, potentially aiding attackers in planning targeted attacks.
+   - **Mitigation:** Encrypt ECU manifests both in storage and during transmission to protect them from unauthorized access. Implement access controls to restrict who can view or modify the manifest. Regularly audit access to the manifest to detect unauthorized attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt the creation, distribution, or processing of ECU manifests, preventing the vehicle from accurately assessing its configuration and receiving necessary updates.
+   - **Mitigation:** Implement redundancy and failover mechanisms for manifest generation and distribution processes to ensure availability. Use monitoring to detect and respond to DoS attacks targeting the manifest system.
+
+6. **Elevation of Privilege**
+   - **Threat:** By compromising the ECU manifest, an attacker could manipulate version or configuration information to bypass security checks, potentially gaining unauthorized access or control over vehicle functions.
+   - **Mitigation:** Enforce strict access controls on the creation and modification of ECU manifests. Use the principle of least privilege to limit who can interact with the manifest. Regularly review and update security policies related to the manifest to address potential vulnerabilities.
+
+### Asset 25: Vehicle Version Manifest
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate a legitimate ECU or the system responsible for generating the Vehicle Version Manifest, misleading other components into trusting incorrect or malicious information about the vehicle's software state.
+   - **Mitigation:** Use strong authentication mechanisms to verify the identity of the entities that generate and use the Vehicle Version Manifest. Implement mutual authentication protocols, such as those using digital certificates, to ensure authenticity.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker could tamper with the Vehicle Version Manifest, altering the information about the versions of software or firmware installed on the vehicle’s ECUs, potentially leading to the installation of outdated or malicious firmware.
+   - **Mitigation:** Use cryptographic signatures to ensure the integrity of the Vehicle Version Manifest. Devices should verify the signatures before accepting and using the manifest. Implement secure storage and transmission protocols to protect the manifest from tampering.
+
+3. **Repudiation**
+   - **Threat:** Entities responsible for generating or using the Vehicle Version Manifest could deny having provided or acted upon specific version information, complicating traceability and accountability.
+   - **Mitigation:** Implement secure logging to record the generation and usage of the Vehicle Version Manifest. Use tamper-evident logs that include details about who generated the manifest, when, and what data was included, to ensure accountability.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to the Vehicle Version Manifest could expose sensitive information about the vehicle’s software and firmware versions, potentially aiding attackers in identifying vulnerabilities or planning targeted attacks.
+   - **Mitigation:** Encrypt the Vehicle Version Manifest both in storage and during transmission. Use access controls to restrict who can view or modify the manifest. Regularly audit access to the manifest to detect unauthorized attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt the generation or distribution of the Vehicle Version Manifest, preventing the vehicle from receiving accurate information about its software state and hindering the update process.
+   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of the manifest generation and distribution processes. Use monitoring to detect and mitigate DoS attacks targeting these systems.
+
+6. **Elevation of Privilege**
+   - **Threat:** By compromising the Vehicle Version Manifest, an attacker could manipulate version information to bypass security checks, potentially leading to unauthorized installation of software or access to restricted functions.
+   - **Mitigation:** Enforce strict access controls on the creation and modification of the Vehicle Version Manifest. Use role-based access control to limit who can interact with the manifest. Regularly review and update security policies related to the manifest to address potential vulnerabilities.
+
+### Asset 26: Uptane Primary ECU
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate the Uptane Primary ECU to the update server or other ECUs, potentially intercepting updates or injecting malicious commands.
+   - **Mitigation:** Use strong authentication methods such as TLS with certificates to verify the identity of the Uptane Primary ECU before it communicates with update servers or secondary ECUs. Employ unique device certificates to prevent spoofing.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker could tamper with the data processed by the Primary ECU, including altering firmware updates or metadata, potentially installing malicious software on the vehicle.
+   - **Mitigation:** Implement cryptographic signatures and hash functions to ensure the integrity of data handled by the Primary ECU. Use secure boot mechanisms to verify the authenticity and integrity of the Primary ECU firmware at startup.
+
+3. **Repudiation**
+   - **Threat:** The Primary ECU or any entity interacting with it could deny having performed specific actions or transactions, making it difficult to track or audit updates and communications.
+   - **Mitigation:** Implement secure logging on the Primary ECU to record all interactions, including update downloads, installations, and communications with secondary ECUs. Use tamper-evident logging mechanisms to ensure logs remain intact.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to the Primary ECU could expose sensitive information, including vehicle data, update schedules, and cryptographic keys.
+   - **Mitigation:** Encrypt sensitive data stored on the Primary ECU and use secure communication protocols to protect data in transit. Implement access controls to restrict who can access the Primary ECU and its data.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt the operation of the Primary ECU, preventing it from coordinating updates or communicating with the update server, potentially leaving the vehicle vulnerable.
+   - **Mitigation:** Implement fail-safes and redundancy to ensure the Primary ECU can continue to operate even under attack. Use rate limiting and anomaly detection to prevent DoS attacks. Monitor the ECU’s performance for signs of disruption.
+
+6. **Elevation of Privilege**
+   - **Threat:** Compromising the Primary ECU could allow an attacker to gain elevated privileges, potentially controlling the update process or accessing restricted vehicle functions.
+   - **Mitigation:** Use the principle of least privilege to limit the Primary ECU’s access to only necessary functions. Implement strong authentication and access controls to protect critical functions. Regularly audit the Primary ECU’s access and activities to detect unauthorized behavior.
+
+### Asset 27: Uptane Secondary ECU
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate a legitimate Secondary ECU, misleading the Primary ECU or other systems into sending updates or commands to a malicious ECU.
+   - **Mitigation:** Use unique device identifiers and certificates for each Secondary ECU to authenticate their identity before receiving updates. Employ mutual authentication protocols to ensure both the Primary and Secondary ECUs verify each other's identity.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with the firmware or data processed by a Secondary ECU, injecting malicious code or altering functionality.
+   - **Mitigation:** Implement cryptographic signatures and hash functions to verify the integrity of firmware and data before installation. Use secure boot mechanisms to ensure that only authenticated firmware is executed on Secondary ECUs.
+
+3. **Repudiation**
+   - **Threat:** A Secondary ECU or any interacting entity could deny receiving or installing specific updates, complicating audit trails and accountability.
+   - **Mitigation:** Implement secure logging on each Secondary ECU to record all update transactions and installations. Use digital signatures to ensure that logs are tamper-proof and can serve as reliable records of actions.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to a Secondary ECU could expose sensitive information, such as diagnostic data, firmware details, or cryptographic keys, potentially aiding further attacks.
+   - **Mitigation:** Encrypt sensitive data stored on and transmitted by Secondary ECUs. Implement access controls to limit access to ECU data. Regularly audit and monitor access to Secondary ECUs to detect unauthorized attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt the operation of a Secondary ECU, causing it to become unresponsive or fail to execute critical functions, potentially affecting the vehicle's operation.
+   - **Mitigation:** Use fail-safes and redundancy to maintain the operation of critical functions even if a Secondary ECU is compromised. Implement rate limiting and anomaly detection to identify and mitigate DoS attacks targeting ECUs.
+
+6. **Elevation of Privilege**
+   - **Threat:** Compromising a Secondary ECU could allow an attacker to gain elevated privileges, enabling unauthorized control over vehicle functions or communication with other ECUs.
+   - **Mitigation:** Enforce the principle of least privilege on Secondary ECUs, limiting their access to only necessary functions. Use role-based access controls to restrict what actions ECUs can perform. Regularly review and update security policies and configurations for ECUs.
 
 
-### Asset 16: Time Servers
+### Asset 28: Time Servers
 
 1. **Spoofing Identity**
    - **Threat:** An attacker could impersonate a legitimate time server, providing incorrect time information to devices, which could be used to bypass security checks or facilitate rollback attacks.
@@ -560,7 +741,7 @@ STRIDE is a model for identifying computer security threats. It stands for:
    - **Threat:** Incorrect time data could be used to manipulate time-based access controls or security mechanisms, potentially allowing an attacker to escalate privileges or bypass security policies.
    - **Mitigation:** Use secure, authenticated time sources and regularly verify the accuracy of the device’s system time against trusted servers. Implement time checks within critical security operations to ensure that time discrepancies are detected and managed appropriately.
 
-### Asset 17: Revocation Mechanisms
+### Asset 29: Revocation Mechanisms
 
 1. **Spoofing Identity**
    - **Threat:** An attacker could impersonate the revocation authority or mechanisms, causing devices to incorrectly believe that certain cryptographic keys or certificates have not been revoked, allowing malicious activities to proceed.
@@ -586,7 +767,7 @@ STRIDE is a model for identifying computer security threats. It stands for:
    - **Threat:** If an attacker can compromise the revocation mechanism, they could potentially bypass revocation checks, allowing them to use compromised credentials to gain unauthorized access or escalate privileges.
    - **Mitigation:** Enforce strict access controls on the revocation mechanism. Use the principle of least privilege to restrict who can initiate or modify revocation actions. Regularly review and update security policies related to revocation to ensure they address potential vulnerabilities.
 
-### Asset 18: Key Storage and Management
+### Asset 30: Key Storage and Management
 
 1. **Spoofing Identity**
    - **Threat:** An attacker could attempt to impersonate a legitimate user or system to gain access to cryptographic keys stored in the key management system, potentially leading to unauthorized access or data manipulation.
@@ -612,7 +793,7 @@ STRIDE is a model for identifying computer security threats. It stands for:
    - **Threat:** Compromising key storage or management systems could allow an attacker to gain elevated privileges, enabling them to access sensitive functions, data, or systems.
    - **Mitigation:** Enforce the principle of least privilege in key management systems, ensuring that only authorized personnel have access to sensitive keys. Regularly review and update access policies to reflect current security requirements. Use multi-factor authentication for accessing key management functions.
 
-### Asset 19: Vehicle-to-Server Communication Protocols
+### Asset 31: Vehicle-to-Server Communication Protocols
 
 1. **Spoofing Identity**
    - **Threat:** An attacker could impersonate a legitimate vehicle or server to intercept communication, steal sensitive data, or inject malicious commands.
@@ -640,83 +821,8 @@ STRIDE is a model for identifying computer security threats. It stands for:
 
 ## STRIDE Analysis for Uptane Specific Assets
 
-### Asset 20: Uptane Primary ECU
 
-1. **Spoofing Identity**
-   - **Threat:** An attacker could impersonate the Uptane Primary ECU to the update server or other ECUs, potentially intercepting updates or injecting malicious commands.
-   - **Mitigation:** Use strong authentication methods such as TLS with certificates to verify the identity of the Uptane Primary ECU before it communicates with update servers or secondary ECUs. Employ unique device certificates to prevent spoofing.
 
-2. **Tampering with Data**
-   - **Threat:** An attacker could tamper with the data processed by the Primary ECU, including altering firmware updates or metadata, potentially installing malicious software on the vehicle.
-   - **Mitigation:** Implement cryptographic signatures and hash functions to ensure the integrity of data handled by the Primary ECU. Use secure boot mechanisms to verify the authenticity and integrity of the Primary ECU firmware at startup.
-
-3. **Repudiation**
-   - **Threat:** The Primary ECU or any entity interacting with it could deny having performed specific actions or transactions, making it difficult to track or audit updates and communications.
-   - **Mitigation:** Implement secure logging on the Primary ECU to record all interactions, including update downloads, installations, and communications with secondary ECUs. Use tamper-evident logging mechanisms to ensure logs remain intact.
-
-4. **Information Disclosure**
-   - **Threat:** Unauthorized access to the Primary ECU could expose sensitive information, including vehicle data, update schedules, and cryptographic keys.
-   - **Mitigation:** Encrypt sensitive data stored on the Primary ECU and use secure communication protocols to protect data in transit. Implement access controls to restrict who can access the Primary ECU and its data.
-
-5. **Denial of Service (DoS)**
-   - **Threat:** An attacker could disrupt the operation of the Primary ECU, preventing it from coordinating updates or communicating with the update server, potentially leaving the vehicle vulnerable.
-   - **Mitigation:** Implement fail-safes and redundancy to ensure the Primary ECU can continue to operate even under attack. Use rate limiting and anomaly detection to prevent DoS attacks. Monitor the ECU’s performance for signs of disruption.
-
-6. **Elevation of Privilege**
-   - **Threat:** Compromising the Primary ECU could allow an attacker to gain elevated privileges, potentially controlling the update process or accessing restricted vehicle functions.
-   - **Mitigation:** Use the principle of least privilege to limit the Primary ECU’s access to only necessary functions. Implement strong authentication and access controls to protect critical functions. Regularly audit the Primary ECU’s access and activities to detect unauthorized behavior.
-
-### Asset 21: Uptane Secondary ECU
-
-1. **Spoofing Identity**
-   - **Threat:** An attacker could impersonate a legitimate Secondary ECU, misleading the Primary ECU or other systems into sending updates or commands to a malicious ECU.
-   - **Mitigation:** Use unique device identifiers and certificates for each Secondary ECU to authenticate their identity before receiving updates. Employ mutual authentication protocols to ensure both the Primary and Secondary ECUs verify each other's identity.
-
-2. **Tampering with Data**
-   - **Threat:** An attacker might tamper with the firmware or data processed by a Secondary ECU, injecting malicious code or altering functionality.
-   - **Mitigation:** Implement cryptographic signatures and hash functions to verify the integrity of firmware and data before installation. Use secure boot mechanisms to ensure that only authenticated firmware is executed on Secondary ECUs.
-
-3. **Repudiation**
-   - **Threat:** A Secondary ECU or any interacting entity could deny receiving or installing specific updates, complicating audit trails and accountability.
-   - **Mitigation:** Implement secure logging on each Secondary ECU to record all update transactions and installations. Use digital signatures to ensure that logs are tamper-proof and can serve as reliable records of actions.
-
-4. **Information Disclosure**
-   - **Threat:** Unauthorized access to a Secondary ECU could expose sensitive information, such as diagnostic data, firmware details, or cryptographic keys, potentially aiding further attacks.
-   - **Mitigation:** Encrypt sensitive data stored on and transmitted by Secondary ECUs. Implement access controls to limit access to ECU data. Regularly audit and monitor access to Secondary ECUs to detect unauthorized attempts.
-
-5. **Denial of Service (DoS)**
-   - **Threat:** An attacker could disrupt the operation of a Secondary ECU, causing it to become unresponsive or fail to execute critical functions, potentially affecting the vehicle's operation.
-   - **Mitigation:** Use fail-safes and redundancy to maintain the operation of critical functions even if a Secondary ECU is compromised. Implement rate limiting and anomaly detection to identify and mitigate DoS attacks targeting ECUs.
-
-6. **Elevation of Privilege**
-   - **Threat:** Compromising a Secondary ECU could allow an attacker to gain elevated privileges, enabling unauthorized control over vehicle functions or communication with other ECUs.
-   - **Mitigation:** Enforce the principle of least privilege on Secondary ECUs, limiting their access to only necessary functions. Use role-based access controls to restrict what actions ECUs can perform. Regularly review and update security policies and configurations for ECUs.
-
-### Asset 22: Vehicle Version Manifest
-
-1. **Spoofing Identity**
-   - **Threat:** An attacker could impersonate a legitimate ECU or the system responsible for generating the Vehicle Version Manifest, misleading other components into trusting incorrect or malicious information about the vehicle's software state.
-   - **Mitigation:** Use strong authentication mechanisms to verify the identity of the entities that generate and use the Vehicle Version Manifest. Implement mutual authentication protocols, such as those using digital certificates, to ensure authenticity.
-
-2. **Tampering with Data**
-   - **Threat:** An attacker could tamper with the Vehicle Version Manifest, altering the information about the versions of software or firmware installed on the vehicle’s ECUs, potentially leading to the installation of outdated or malicious firmware.
-   - **Mitigation:** Use cryptographic signatures to ensure the integrity of the Vehicle Version Manifest. Devices should verify the signatures before accepting and using the manifest. Implement secure storage and transmission protocols to protect the manifest from tampering.
-
-3. **Repudiation**
-   - **Threat:** Entities responsible for generating or using the Vehicle Version Manifest could deny having provided or acted upon specific version information, complicating traceability and accountability.
-   - **Mitigation:** Implement secure logging to record the generation and usage of the Vehicle Version Manifest. Use tamper-evident logs that include details about who generated the manifest, when, and what data was included, to ensure accountability.
-
-4. **Information Disclosure**
-   - **Threat:** Unauthorized access to the Vehicle Version Manifest could expose sensitive information about the vehicle’s software and firmware versions, potentially aiding attackers in identifying vulnerabilities or planning targeted attacks.
-   - **Mitigation:** Encrypt the Vehicle Version Manifest both in storage and during transmission. Use access controls to restrict who can view or modify the manifest. Regularly audit access to the manifest to detect unauthorized attempts.
-
-5. **Denial of Service (DoS)**
-   - **Threat:** An attacker could disrupt the generation or distribution of the Vehicle Version Manifest, preventing the vehicle from receiving accurate information about its software state and hindering the update process.
-   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of the manifest generation and distribution processes. Use monitoring to detect and mitigate DoS attacks targeting these systems.
-
-6. **Elevation of Privilege**
-   - **Threat:** By compromising the Vehicle Version Manifest, an attacker could manipulate version information to bypass security checks, potentially leading to unauthorized installation of software or access to restricted functions.
-   - **Mitigation:** Enforce strict access controls on the creation and modification of the Vehicle Version Manifest. Use role-based access control to limit who can interact with the manifest. Regularly review and update security policies related to the manifest to address potential vulnerabilities.
 
 ### Asset 23: Time Servers
 
@@ -744,83 +850,6 @@ STRIDE is a model for identifying computer security threats. It stands for:
    - **Threat:** Incorrect time data could be used to manipulate time-based access controls or security mechanisms, potentially allowing an attacker to escalate privileges or bypass security policies.
    - **Mitigation:** Use secure, authenticated time sources and regularly verify the accuracy of the device’s system time against trusted servers. Implement time checks within critical security operations to ensure that time discrepancies are detected and managed appropriately.
 
-### Asset 24: Compromise-Resilient Keys
-
-1. **Spoofing Identity**
-   - **Threat:** An attacker could use stolen or forged keys to impersonate a legitimate entity, such as a device or server, allowing unauthorized access to systems or data.
-   - **Mitigation:** Use strong cryptographic key management practices, including multi-factor authentication and hardware security modules (HSMs) to protect keys from unauthorized access. Regularly update and rotate keys to minimize the impact of key compromise.
-
-2. **Tampering with Data**
-   - **Threat:** An attacker might tamper with compromise-resilient keys or the data they protect, potentially bypassing security measures or altering sensitive information.
-   - **Mitigation:** Use hardware-based storage for keys to prevent tampering. Implement cryptographic signatures and integrity checks to detect unauthorized changes to keys and the data they protect. Use secure key exchange protocols to ensure key integrity during distribution.
-
-3. **Repudiation**
-   - **Threat:** Entities could deny having used specific keys for encryption, decryption, or signing, making it difficult to trace actions and ensure accountability.
-   - **Mitigation:** Implement secure logging to record all usage of compromise-resilient keys, including timestamps, the purpose of use, and the entity responsible. Use tamper-evident logging mechanisms to ensure that logs are reliable and cannot be altered.
-
-4. **Information Disclosure**
-   - **Threat:** If compromise-resilient keys are exposed, an attacker could gain access to sensitive information, decrypt communications, or impersonate legitimate entities.
-   - **Mitigation:** Encrypt keys both in storage and during transmission to protect them from unauthorized access. Use access controls to restrict who can access keys. Regularly audit key access logs to detect unauthorized attempts.
-
-5. **Denial of Service (DoS)**
-   - **Threat:** An attacker could disrupt access to compromise-resilient keys, preventing legitimate encryption, decryption, or signing operations and causing a failure in security functions.
-   - **Mitigation:** Implement redundancy and failover mechanisms for key storage and management systems to ensure availability. Use load balancing to manage access and prevent overload. Monitor key usage for signs of DoS attacks and respond promptly.
-
-6. **Elevation of Privilege**
-   - **Threat:** Compromising compromise-resilient keys could allow an attacker to escalate privileges, enabling unauthorized access to sensitive functions, data, or systems.
-   - **Mitigation:** Enforce the principle of least privilege in key management systems, ensuring that only authorized personnel have access to sensitive keys. Regularly review and update access policies to reflect current security requirements. Use multi-factor authentication for accessing key management functions.
-
-### Asset 25: ECU Manifest
-
-1. **Spoofing Identity**
-   - **Threat:** An attacker could impersonate a legitimate ECU manifest, misleading the Primary ECU or other systems into trusting incorrect or malicious information about the ECU’s software or hardware state.
-   - **Mitigation:** Use digital signatures to authenticate ECU manifests. Each manifest should be signed by a trusted authority to verify its origin. Employ mutual authentication protocols to ensure that ECUs and the Primary ECU can verify each other’s identity.
-
-2. **Tampering with Data**
-   - **Threat:** An attacker might tamper with the data in the ECU manifest, altering version information, configuration details, or other critical data, potentially leading to security vulnerabilities or operational issues.
-   - **Mitigation:** Implement cryptographic hash functions and digital signatures to ensure the integrity of the ECU manifest. Secure storage and transmission of the manifest are essential to prevent unauthorized modifications.
-
-3. **Repudiation**
-   - **Threat:** Entities responsible for generating or using the ECU manifest could deny having provided or acted upon specific manifest information, making it difficult to track and audit updates and configurations.
-   - **Mitigation:** Implement secure logging to record the creation, distribution, and use of ECU manifests. Logs should include timestamps, origin details, and actions taken based on the manifest. Use tamper-evident logging mechanisms to ensure the reliability of logs.
-
-4. **Information Disclosure**
-   - **Threat:** Unauthorized access to ECU manifests could expose sensitive information about the vehicle’s software, hardware configurations, and operational state, potentially aiding attackers in planning targeted attacks.
-   - **Mitigation:** Encrypt ECU manifests both in storage and during transmission to protect them from unauthorized access. Implement access controls to restrict who can view or modify the manifest. Regularly audit access to the manifest to detect unauthorized attempts.
-
-5. **Denial of Service (DoS)**
-   - **Threat:** An attacker could disrupt the creation, distribution, or processing of ECU manifests, preventing the vehicle from accurately assessing its configuration and receiving necessary updates.
-   - **Mitigation:** Implement redundancy and failover mechanisms for manifest generation and distribution processes to ensure availability. Use monitoring to detect and respond to DoS attacks targeting the manifest system.
-
-6. **Elevation of Privilege**
-   - **Threat:** By compromising the ECU manifest, an attacker could manipulate version or configuration information to bypass security checks, potentially gaining unauthorized access or control over vehicle functions.
-   - **Mitigation:** Enforce strict access controls on the creation and modification of ECU manifests. Use the principle of least privilege to limit who can interact with the manifest. Regularly review and update security policies related to the manifest to address potential vulnerabilities.
-
-### Asset 26: Delegation Metadata
-
-1. **Spoofing Identity**
-   - **Threat:** An attacker could impersonate a legitimate entity authorized to delegate certain roles or permissions, potentially gaining unauthorized control over aspects of the update or security process.
-   - **Mitigation:** Use strong authentication methods, such as cryptographic certificates, to verify the identity of entities involved in delegating roles or permissions. Implement digital signatures to ensure that only authorized entities can issue delegation metadata.
-
-2. **Tampering with Data**
-   - **Threat:** An attacker might tamper with delegation metadata to alter roles, permissions, or authorized actions, potentially enabling unauthorized access or bypassing security controls.
-   - **Mitigation:** Implement cryptographic signatures to protect the integrity of delegation metadata. Use hash functions to detect any unauthorized changes. Ensure that delegation metadata is stored and transmitted securely to prevent tampering.
-
-3. **Repudiation**
-   - **Threat:** An entity involved in creating or modifying delegation metadata could deny having done so, complicating the ability to trace actions and enforce accountability.
-   - **Mitigation:** Implement secure logging to record all actions related to delegation metadata, including creation, modification, and usage. Use digital signatures to ensure that logs are tamper-proof and can serve as reliable records of actions.
-
-4. **Information Disclosure**
-   - **Threat:** Unauthorized access to delegation metadata could expose sensitive information about roles, permissions, and organizational structure, potentially aiding attackers in planning targeted attacks.
-   - **Mitigation:** Encrypt delegation metadata both in storage and during transmission to protect it from unauthorized access. Implement access controls to restrict who can view or modify delegation metadata. Regularly audit access to the metadata to detect unauthorized attempts.
-
-5. **Denial of Service (DoS)**
-   - **Threat:** An attacker could disrupt the creation, distribution, or processing of delegation metadata, preventing the proper assignment of roles and permissions and hindering operations.
-   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of delegation metadata systems. Use monitoring to detect and respond to DoS attacks targeting delegation processes.
-
-6. **Elevation of Privilege**
-   - **Threat:** By compromising delegation metadata, an attacker could assign themselves or others elevated roles or permissions, enabling unauthorized access to sensitive functions or data.
-   - **Mitigation:** Enforce strict access controls on the creation and modification of delegation metadata. Use role-based access control to limit who can assign roles and permissions. Regularly review and update delegation policies to reflect current security needs.
 
 ### Asset 28: Targets Metadata
 
@@ -847,30 +876,4 @@ STRIDE is a model for identifying computer security threats. It stands for:
 6. **Elevation of Privilege**
    - **Threat:** By compromising targets metadata, an attacker could escalate privileges, enabling the distribution of unauthorized updates that could grant access to sensitive functions or data.
    - **Mitigation:** Enforce strict access controls on the creation and modification of targets metadata. Use the principle of least privilege to limit who can manage and sign targets metadata. Regularly review and update security policies related to targets metadata to reflect current threats.
-
-### Asset 30: Timestamp Metadata
-
-1. **Spoofing Identity**
-   - **Threat:** An attacker could impersonate a legitimate signer of the timestamp metadata, leading devices to accept incorrect or outdated metadata, potentially enabling rollback attacks or delaying critical updates.
-   - **Mitigation:** Use strong cryptographic signatures to authenticate the source of timestamp metadata. Ensure that only recognized, trusted keys are used to sign timestamp metadata. Implement certificate-based authentication to verify the identity of entities responsible for signing.
-
-2. **Tampering with Data**
-   - **Threat:** An attacker might tamper with timestamp metadata to alter timestamps or version information, which could cause devices to trust outdated or unauthorized metadata and updates.
-   - **Mitigation:** Implement cryptographic signatures and hash functions to protect the integrity of timestamp metadata. Devices should verify these signatures before using the metadata. Use secure transmission protocols to protect metadata from tampering during distribution.
-
-3. **Repudiation**
-   - **Threat:** An entity responsible for generating or signing timestamp metadata could deny having done so, complicating the ability to trace actions and maintain accountability.
-   - **Mitigation:** Implement secure logging to record all actions related to the creation, modification, and distribution of timestamp metadata. Use tamper-evident logging mechanisms, including digital signatures, to ensure the reliability and integrity of logs.
-
-4. **Information Disclosure**
-   - **Threat:** Unauthorized access to timestamp metadata could reveal information about the timing and versions of updates, potentially aiding attackers in planning targeted attacks or exploiting timing-based vulnerabilities.
-   - **Mitigation:** Encrypt timestamp metadata both in storage and during transmission to protect it from unauthorized access. Implement access controls to restrict who can view or modify timestamp metadata. Regularly audit access to timestamp metadata to detect unauthorized attempts.
-
-5. **Denial of Service (DoS)**
-   - **Threat:** An attacker could disrupt access to timestamp metadata, preventing devices from verifying the freshness of updates, potentially leaving them vulnerable or outdated.
-   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of timestamp metadata. Use monitoring and alerting to detect and respond to DoS attacks targeting timestamp metadata systems.
-
-6. **Elevation of Privilege**
-   - **Threat:** By compromising timestamp metadata, an attacker could manipulate timestamps to bypass security checks, potentially allowing unauthorized updates or gaining access to restricted functions.
-   - **Mitigation:** Enforce strict access controls on the creation and modification of timestamp metadata. Use the principle of least privilege to limit who can manage and sign timestamp metadata. Regularly review and update security policies related to timestamp metadata to ensure they address potential vulnerabilities.
 
