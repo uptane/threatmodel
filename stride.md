@@ -400,6 +400,140 @@ STRIDE is a model for identifying computer security threats. It stands for:
    - **Threat:** If an attacker can manipulate the rollback mechanism, they could potentially gain unauthorized access to higher-privilege functions by reverting to a firmware version with known vulnerabilities.
    - **Mitigation:** Enforce strict access controls on the rollback mechanism. Use the principle of least privilege to limit who can initiate rollbacks. Regularly review and update security policies related to rollbacks to ensure that vulnerabilities are addressed.
 
+## Uptane Specific Assets
+
+### Asset 16: Director Repository
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate the Director Repository, tricking devices into connecting to a malicious server and receiving unauthorized or malicious updates.
+   - **Mitigation:** Use strong mutual authentication methods, such as TLS with client and server certificates, to verify the identity of the Director Repository. Devices should be configured to accept updates only from authenticated and trusted repositories.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with the data in the Director Repository, altering update metadata, version information, or cryptographic checksums, potentially leading to the distribution of malicious or unauthorized updates.
+   - **Mitigation:** Implement cryptographic signatures and hash functions to ensure the integrity of all data stored and distributed by the Director Repository. Use secure storage solutions and encrypt data both at rest and in transit. Regularly audit and verify the integrity of repository data.
+
+3. **Repudiation**
+   - **Threat:** Entities managing the Director Repository could deny having distributed specific updates or metadata, making it difficult to trace the origin of changes and maintain accountability.
+   - **Mitigation:** Implement secure, tamper-proof logging to record all actions related to the creation, modification, and distribution of data from the Director Repository. Use digital signatures to ensure that logs are reliable and can be used as evidence in audits.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to the Director Repository could expose sensitive information, including update schedules, cryptographic keys, and metadata, potentially aiding attackers in compromising the update process.
+   - **Mitigation:** Encrypt all sensitive data within the Director Repository, both in storage and during transmission. Implement access controls to restrict who can view or modify repository data. Regularly audit access logs to detect and respond to unauthorized access attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could target the Director Repository with a DoS attack, making it unavailable to devices and preventing the distribution of critical updates.
+   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of the Director Repository. Use load balancing to manage incoming traffic and rate limiting to prevent abuse. Monitor the repository for signs of DoS attacks and respond promptly.
+
+6. **Elevation of Privilege**
+   - **Threat:** Compromising the Director Repository could allow an attacker to gain elevated privileges, enabling unauthorized modifications to update metadata or the distribution of malicious updates.
+   - **Mitigation:** Use role-based access control (RBAC) to limit who can access and modify the Director Repository. Enforce the principle of least privilege to ensure that only authorized personnel have access to critical functions. Regularly review and update access policies to reflect current security requirements.
+
+### Asset 17: Uptane Image Repository
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate the Image Repository, tricking devices into downloading and installing unauthorized or malicious firmware images.
+   - **Mitigation:** Use strong authentication methods, such as TLS with server certificates, to verify the identity of the Image Repository. Devices should only accept updates from authenticated and trusted repositories, employing mutual authentication where possible.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with firmware images or metadata stored in the Image Repository, injecting malicious code or altering cryptographic hashes to bypass security checks.
+   - **Mitigation:** Implement cryptographic signatures and hash functions to protect the integrity of all firmware images and metadata. Use secure storage solutions to prevent unauthorized modifications and ensure data integrity. Devices should verify the signatures and hashes of images before installation.
+
+3. **Repudiation**
+   - **Threat:** Entities responsible for managing the Image Repository could deny having distributed specific firmware images or metadata, complicating the ability to trace the origin of changes and enforce accountability.
+   - **Mitigation:** Implement secure logging to record all actions related to the storage, modification, and distribution of firmware images and metadata. Use tamper-evident logging mechanisms, including digital signatures, to ensure the reliability and authenticity of logs.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to the Image Repository could expose sensitive information, such as firmware images, cryptographic keys, and metadata, potentially aiding attackers in compromising devices.
+   - **Mitigation:** Encrypt firmware images and metadata both in storage and during transmission to protect them from unauthorized access. Implement access controls to restrict who can view or modify repository data. Regularly audit access logs to detect and respond to unauthorized access attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could target the Image Repository with a DoS attack, making it unavailable to devices and preventing the distribution of critical firmware updates.
+   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of the Image Repository. Use load balancing to manage incoming traffic and rate limiting to prevent abuse. Monitor the repository for signs of DoS attacks and respond promptly.
+
+6. **Elevation of Privilege**
+   - **Threat:** Compromising the Image Repository could allow an attacker to gain elevated privileges, enabling unauthorized modifications to firmware images or the distribution of malicious updates.
+   - **Mitigation:** Use role-based access control (RBAC) to limit who can access and modify the Image Repository. Enforce the principle of least privilege to ensure that only authorized personnel have access to critical functions. Regularly review and update access policies to reflect current security requirements.
+
+### Asset 18: Root Metadata
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate the root authority, tricking the system into accepting forged or malicious metadata, potentially leading to unauthorized updates or actions.
+   - **Mitigation:** Use strong authentication and cryptographic certificates to verify the identity of the root authority. Implement digital signatures to ensure that only metadata signed by the trusted root authority is accepted.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with root metadata, altering key information, trust anchors, or cryptographic material, which could compromise the entire security framework.
+   - **Mitigation:** Use cryptographic signatures and hash functions to ensure the integrity of root metadata. Implement secure storage and transmission protocols to protect the metadata from unauthorized modifications.
+
+3. **Repudiation**
+   - **Threat:** The root authority could deny issuing certain root metadata or making specific changes, complicating the ability to trace actions and enforce accountability.
+   - **Mitigation:** Implement secure logging to record all actions related to the creation, modification, and distribution of root metadata. Use digital signatures on logs to ensure they are tamper-proof and can serve as reliable records of actions.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to root metadata could expose sensitive information, such as cryptographic keys, trust policies, and system configurations, potentially aiding attackers in compromising the security system.
+   - **Mitigation:** Encrypt root metadata both in storage and during transmission to protect it from unauthorized access. Implement access controls to restrict who can view or modify root metadata. Regularly audit access to root metadata to detect unauthorized attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt access to root metadata, preventing the system from verifying the integrity and authenticity of other metadata, potentially halting operations or allowing unauthorized actions.
+   - **Mitigation:** Implement redundancy and failover mechanisms for root metadata storage and distribution to ensure availability. Use monitoring to detect and respond to DoS attacks targeting root metadata systems.
+
+6. **Elevation of Privilege**
+   - **Threat:** By compromising root metadata, an attacker could potentially escalate privileges, enabling unauthorized access to critical functions or the ability to sign malicious updates.
+   - **Mitigation:** Enforce strict access controls on the creation and modification of root metadata. Use role-based access control to limit who can manage root metadata. Regularly review and update root metadata and associated policies to ensure they reflect current security requirements.
+
+### Asset 19: Targets Metadata
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate a legitimate entity responsible for signing targets metadata, tricking devices into accepting unauthorized or malicious updates.
+   - **Mitigation:** Use strong cryptographic signatures to authenticate the source of targets metadata. Ensure that only recognized, trusted keys are used for signing. Implement certificate-based authentication to verify the identity of entities involved in signing targets metadata.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with targets metadata to alter the list of authorized updates, version information, or cryptographic hashes, allowing the distribution of unauthorized or malicious firmware.
+   - **Mitigation:** Implement cryptographic signatures and hash functions to ensure the integrity of targets metadata. Devices should verify these signatures and hashes before accepting and processing the metadata. Use secure storage and transmission channels to protect metadata from tampering.
+
+3. **Repudiation**
+   - **Threat:** Entities responsible for creating or modifying targets metadata could deny their involvement, making it difficult to trace changes and enforce accountability.
+   - **Mitigation:** Implement secure, tamper-proof logging to record all actions related to the creation, modification, and distribution of targets metadata. Use digital signatures to ensure that logs are reliable and can serve as evidence of actions taken.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to targets metadata could expose information about available updates, cryptographic hashes, or device configurations, potentially aiding attackers in planning targeted attacks.
+   - **Mitigation:** Encrypt targets metadata both in storage and during transmission to protect it from unauthorized access. Implement access controls to restrict who can view or modify targets metadata. Regularly audit access to metadata to detect and respond to unauthorized attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt access to targets metadata, preventing devices from verifying and downloading authorized updates, potentially leaving them vulnerable or outdated.
+   - **Mitigation:** Implement redundancy and failover mechanisms for targets metadata storage and distribution to ensure availability. Use monitoring to detect and respond to DoS attacks targeting metadata systems.
+
+6. **Elevation of Privilege**
+   - **Threat:** By compromising targets metadata, an attacker could escalate privileges, enabling the distribution of unauthorized updates that could grant access to sensitive functions or data.
+   - **Mitigation:** Enforce strict access controls on the creation and modification of targets metadata. Use the principle of least privilege to limit who can manage and sign targets metadata. Regularly review and update security policies related to targets metadata to reflect current threats.
+
+### Asset 20: Snapshot Metadata
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate the entity responsible for creating snapshot metadata, misleading devices into accepting tampered or outdated metadata, which could facilitate malicious updates.
+   - **Mitigation:** Use strong cryptographic signatures to authenticate the source of snapshot metadata. Ensure that devices verify the signatures before accepting metadata, using trusted certificates to verify identity.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with snapshot metadata to alter information about which versions of files are the latest and legitimate, potentially allowing outdated or malicious files to be accepted.
+   - **Mitigation:** Implement cryptographic hash functions and digital signatures to protect the integrity of snapshot metadata. Devices should verify these signatures and hashes to ensure that metadata has not been altered.
+
+3. **Repudiation**
+   - **Threat:** The entity responsible for generating snapshot metadata could deny having provided certain metadata, making it difficult to trace the source of updates and maintain accountability.
+   - **Mitigation:** Implement secure logging to record the creation, distribution, and use of snapshot metadata. Logs should include timestamps and digital signatures to ensure non-repudiation and provide a reliable audit trail.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to snapshot metadata could expose sensitive information about the update process, such as version histories or file names, potentially aiding attackers in planning targeted attacks.
+   - **Mitigation:** Encrypt snapshot metadata both in storage and during transmission to protect it from unauthorized access. Implement access controls to restrict who can view or modify the metadata. Regularly audit access to the metadata to detect unauthorized attempts.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt the creation or distribution of snapshot metadata, preventing devices from accurately assessing which updates are current and valid, leading to potential security vulnerabilities.
+   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of snapshot metadata services. Use load balancing and monitoring to detect and respond to DoS attacks targeting metadata systems.
+
+6. **Elevation of Privilege**
+   - **Threat:** Compromising snapshot metadata could allow an attacker to manipulate the update process, potentially installing unauthorized software or gaining access to restricted areas of the system.
+   - **Mitigation:** Use strict access controls to limit who can create and modify snapshot metadata. Implement role-based access control to restrict the ability to manipulate snapshot information. Regularly review and update access policies to reflect current security needs.
+
+
+
 ### Asset 16: Time Servers
 
 1. **Spoofing Identity**
@@ -687,58 +821,6 @@ STRIDE is a model for identifying computer security threats. It stands for:
 6. **Elevation of Privilege**
    - **Threat:** By compromising delegation metadata, an attacker could assign themselves or others elevated roles or permissions, enabling unauthorized access to sensitive functions or data.
    - **Mitigation:** Enforce strict access controls on the creation and modification of delegation metadata. Use role-based access control to limit who can assign roles and permissions. Regularly review and update delegation policies to reflect current security needs.
-
-### Asset 27: Snapshot Metadata
-
-1. **Spoofing Identity**
-   - **Threat:** An attacker could impersonate the entity responsible for creating snapshot metadata, misleading devices into accepting tampered or outdated metadata, which could facilitate malicious updates.
-   - **Mitigation:** Use strong cryptographic signatures to authenticate the source of snapshot metadata. Ensure that devices verify the signatures before accepting metadata, using trusted certificates to verify identity.
-
-2. **Tampering with Data**
-   - **Threat:** An attacker might tamper with snapshot metadata to alter information about which versions of files are the latest and legitimate, potentially allowing outdated or malicious files to be accepted.
-   - **Mitigation:** Implement cryptographic hash functions and digital signatures to protect the integrity of snapshot metadata. Devices should verify these signatures and hashes to ensure that metadata has not been altered.
-
-3. **Repudiation**
-   - **Threat:** The entity responsible for generating snapshot metadata could deny having provided certain metadata, making it difficult to trace the source of updates and maintain accountability.
-   - **Mitigation:** Implement secure logging to record the creation, distribution, and use of snapshot metadata. Logs should include timestamps and digital signatures to ensure non-repudiation and provide a reliable audit trail.
-
-4. **Information Disclosure**
-   - **Threat:** Unauthorized access to snapshot metadata could expose sensitive information about the update process, such as version histories or file names, potentially aiding attackers in planning targeted attacks.
-   - **Mitigation:** Encrypt snapshot metadata both in storage and during transmission to protect it from unauthorized access. Implement access controls to restrict who can view or modify the metadata. Regularly audit access to the metadata to detect unauthorized attempts.
-
-5. **Denial of Service (DoS)**
-   - **Threat:** An attacker could disrupt the creation or distribution of snapshot metadata, preventing devices from accurately assessing which updates are current and valid, leading to potential security vulnerabilities.
-   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of snapshot metadata services. Use load balancing and monitoring to detect and respond to DoS attacks targeting metadata systems.
-
-6. **Elevation of Privilege**
-   - **Threat:** Compromising snapshot metadata could allow an attacker to manipulate the update process, potentially installing unauthorized software or gaining access to restricted areas of the system.
-   - **Mitigation:** Use strict access controls to limit who can create and modify snapshot metadata. Implement role-based access control to restrict the ability to manipulate snapshot information. Regularly review and update access policies to reflect current security needs.
-
-### Asset 27: Root Metadata
-
-1. **Spoofing Identity**
-   - **Threat:** An attacker could impersonate the root authority, tricking the system into accepting forged or malicious metadata, potentially leading to unauthorized updates or actions.
-   - **Mitigation:** Use strong authentication and cryptographic certificates to verify the identity of the root authority. Implement digital signatures to ensure that only metadata signed by the trusted root authority is accepted.
-
-2. **Tampering with Data**
-   - **Threat:** An attacker might tamper with root metadata, altering key information, trust anchors, or cryptographic material, which could compromise the entire security framework.
-   - **Mitigation:** Use cryptographic signatures and hash functions to ensure the integrity of root metadata. Implement secure storage and transmission protocols to protect the metadata from unauthorized modifications.
-
-3. **Repudiation**
-   - **Threat:** The root authority could deny issuing certain root metadata or making specific changes, complicating the ability to trace actions and enforce accountability.
-   - **Mitigation:** Implement secure logging to record all actions related to the creation, modification, and distribution of root metadata. Use digital signatures on logs to ensure they are tamper-proof and can serve as reliable records of actions.
-
-4. **Information Disclosure**
-   - **Threat:** Unauthorized access to root metadata could expose sensitive information, such as cryptographic keys, trust policies, and system configurations, potentially aiding attackers in compromising the security system.
-   - **Mitigation:** Encrypt root metadata both in storage and during transmission to protect it from unauthorized access. Implement access controls to restrict who can view or modify root metadata. Regularly audit access to root metadata to detect unauthorized attempts.
-
-5. **Denial of Service (DoS)**
-   - **Threat:** An attacker could disrupt access to root metadata, preventing the system from verifying the integrity and authenticity of other metadata, potentially halting operations or allowing unauthorized actions.
-   - **Mitigation:** Implement redundancy and failover mechanisms for root metadata storage and distribution to ensure availability. Use monitoring to detect and respond to DoS attacks targeting root metadata systems.
-
-6. **Elevation of Privilege**
-   - **Threat:** By compromising root metadata, an attacker could potentially escalate privileges, enabling unauthorized access to critical functions or the ability to sign malicious updates.
-   - **Mitigation:** Enforce strict access controls on the creation and modification of root metadata. Use role-based access control to limit who can manage root metadata. Regularly review and update root metadata and associated policies to ensure they reflect current security requirements.
 
 ### Asset 28: Targets Metadata
 
