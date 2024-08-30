@@ -347,3 +347,108 @@ STRIDE is a model for identifying computer security threats. It stands for:
 6. **Elevation of Privilege**
    - **Threat:** Compromising cryptographic keys could allow an attacker to bypass security controls, enabling unauthorized access to system functions or sensitive data.
    - **Mitigation:** Use the principle of least privilege to restrict access to cryptographic keys. Implement multi-factor authentication and strong access control policies for key management. Regularly review and rotate cryptographic keys to minimize the impact of potential compromises.
+
+### Asset 14: Update Rollout Mechanism
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate the update rollout mechanism, misleading devices into downloading and installing unauthorized or malicious updates.
+   - **Mitigation:** Use strong authentication to verify the identity of the update rollout server. Implement mutual authentication protocols (e.g., TLS with certificates) to ensure that devices only communicate with trusted rollout servers.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with the update rollout mechanism or the data it transmits, such as altering the update schedule or changing which updates are deployed to specific devices.
+   - **Mitigation:** Use digital signatures and cryptographic hashes to protect the integrity of the rollout data. Ensure that any changes to the rollout mechanism are logged and can be verified. Implement strict access controls to prevent unauthorized modifications.
+
+3. **Repudiation**
+   - **Threat:** The entity responsible for the update rollout mechanism could deny sending certain updates or could deny having made specific decisions about rollout schedules, complicating audit and accountability.
+   - **Mitigation:** Implement secure logging that records all update rollout activities, including which updates were sent, when, and to which devices. Use non-repudiable digital signatures to ensure that all actions can be traced back to a responsible entity.
+
+4. **Information Disclosure**
+   - **Threat:** Sensitive information about the update process, such as the content of updates, device vulnerabilities, or deployment schedules, could be exposed if the update rollout mechanism is compromised.
+   - **Mitigation:** Encrypt all communications related to the update rollout process. Use access controls to limit who can view or modify rollout plans. Regularly audit access to the rollout mechanism to detect unauthorized access.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt the update rollout mechanism, preventing devices from receiving critical updates or causing delays in the rollout process.
+   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of the update rollout service. Use rate limiting and monitoring to detect and mitigate DoS attacks. Deploy distributed update servers to balance the load and increase resilience.
+
+6. **Elevation of Privilege**
+   - **Threat:** Compromising the update rollout mechanism could allow an attacker to gain elevated privileges, enabling them to push unauthorized updates or control the update process.
+   - **Mitigation:** Use role-based access control (RBAC) to limit who can modify the update rollout mechanism. Enforce the principle of least privilege to restrict access to only what is necessary. Regularly review and update access policies to ensure they reflect current security needs.
+
+### Asset 15: Rollback Mechanism
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate the rollback mechanism to trick the system into accepting unauthorized or malicious rollbacks, potentially reverting to a vulnerable or compromised state.
+   - **Mitigation:** Use strong authentication to verify the identity of the entity initiating the rollback. Ensure that rollback commands are digitally signed by a trusted authority before they are executed by the device.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with the rollback mechanism to change the criteria or conditions under which rollbacks are performed, or alter the firmware versions that devices are rolled back to.
+   - **Mitigation:** Implement cryptographic checks, such as digital signatures and hashes, to ensure the integrity of rollback scripts and configurations. Use secure storage for rollback data to prevent unauthorized modifications.
+
+3. **Repudiation**
+   - **Threat:** An entity responsible for initiating a rollback could deny having done so, making it difficult to trace the origin of the rollback and understand why it occurred.
+   - **Mitigation:** Implement secure, tamper-proof logging to record all rollback actions, including who initiated the rollback, when it occurred, and the specific firmware versions involved. Use digital signatures to ensure that logs cannot be repudiated.
+
+4. **Information Disclosure**
+   - **Threat:** If the rollback mechanism is compromised, sensitive information about previous firmware versions, system states, or vulnerabilities might be exposed, potentially aiding attackers.
+   - **Mitigation:** Encrypt rollback-related data both in storage and during transmission. Implement access controls to restrict who can access rollback information. Regularly audit access to rollback mechanisms to detect unauthorized access.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could exploit the rollback mechanism to repeatedly revert systems to a previous state, disrupting normal operations and preventing devices from using the latest secure firmware.
+   - **Mitigation:** Implement safeguards that limit the number of rollbacks allowed or require additional authentication for multiple rollback attempts. Monitor for unusual rollback activity and use rate limiting to prevent abuse.
+
+6. **Elevation of Privilege**
+   - **Threat:** If an attacker can manipulate the rollback mechanism, they could potentially gain unauthorized access to higher-privilege functions by reverting to a firmware version with known vulnerabilities.
+   - **Mitigation:** Enforce strict access controls on the rollback mechanism. Use the principle of least privilege to limit who can initiate rollbacks. Regularly review and update security policies related to rollbacks to ensure that vulnerabilities are addressed.
+
+### Asset 16: Time Servers
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate a legitimate time server, providing incorrect time information to devices, which could be used to bypass security checks or facilitate rollback attacks.
+   - **Mitigation:** Use authentication mechanisms such as Network Time Security (NTS) to verify the identity of time servers. Devices should be configured to accept time updates only from trusted, authenticated sources.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with the time data provided by time servers, altering timestamps to affect the behavior of time-sensitive operations, such as certificate expiration or update schedules.
+   - **Mitigation:** Implement cryptographic methods to secure the integrity of time data. Use cryptographic signing of time data to ensure that it has not been altered during transmission.
+
+3. **Repudiation**
+   - **Threat:** A time server could deny providing specific time data, making it difficult to trace the source of incorrect time information or security incidents that rely on accurate timestamps.
+   - **Mitigation:** Maintain secure logs of time synchronization events, including which servers were used and the time data provided. Use signed logs to ensure they are tamper-proof and can be used as evidence.
+
+4. **Information Disclosure**
+   - **Threat:** Time synchronization data might expose information about the device’s operations or configurations if intercepted, potentially aiding in profiling or targeted attacks.
+   - **Mitigation:** Encrypt time synchronization traffic to protect it from eavesdropping. Use secure protocols like NTS to ensure that time data is transmitted securely. Limit the disclosure of detailed time synchronization logs to authorized personnel.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could target time servers or disrupt time synchronization, causing devices to have incorrect times, which could affect the operation of time-sensitive security mechanisms.
+   - **Mitigation:** Implement redundancy by configuring devices to use multiple time servers. Use load balancing and failover mechanisms to ensure time synchronization remains available even during attacks. Monitor time synchronization for anomalies.
+
+6. **Elevation of Privilege**
+   - **Threat:** Incorrect time data could be used to manipulate time-based access controls or security mechanisms, potentially allowing an attacker to escalate privileges or bypass security policies.
+   - **Mitigation:** Use secure, authenticated time sources and regularly verify the accuracy of the device’s system time against trusted servers. Implement time checks within critical security operations to ensure that time discrepancies are detected and managed appropriately.
+
+### Asset 17: Revocation Mechanisms
+
+1. **Spoofing Identity**
+   - **Threat:** An attacker could impersonate the revocation authority or mechanisms, causing devices to incorrectly believe that certain cryptographic keys or certificates have not been revoked, allowing malicious activities to proceed.
+   - **Mitigation:** Use strong authentication to verify the identity of the revocation authority. Implement certificate-based authentication to ensure that only trusted revocation servers can communicate with devices.
+
+2. **Tampering with Data**
+   - **Threat:** An attacker might tamper with revocation lists or status information to prevent the revocation of compromised keys or certificates, allowing continued use of revoked credentials.
+   - **Mitigation:** Use digital signatures to protect the integrity of revocation lists and status information. Devices should verify the signatures before accepting revocation information. Implement secure storage and transmission protocols for revocation data.
+
+3. **Repudiation**
+   - **Threat:** An entity responsible for revocation could deny having issued a revocation, making it difficult to trace the source of revocation actions and maintain accountability.
+   - **Mitigation:** Implement secure logging that records all revocation actions, including the entity responsible, the time of revocation, and the specific keys or certificates involved. Use tamper-evident logging to ensure the integrity of logs.
+
+4. **Information Disclosure**
+   - **Threat:** Unauthorized access to revocation information could expose details about compromised keys or certificates, potentially providing attackers with insights into vulnerabilities or security incidents.
+   - **Mitigation:** Encrypt revocation data both in storage and during transmission to protect it from unauthorized access. Use access controls to limit who can view or modify revocation information. Regularly audit access to revocation mechanisms to detect unauthorized access.
+
+5. **Denial of Service (DoS)**
+   - **Threat:** An attacker could disrupt the revocation mechanisms, preventing devices from receiving updated revocation information and allowing the use of compromised keys or certificates.
+   - **Mitigation:** Implement redundancy and failover mechanisms to ensure the availability of revocation services. Use load balancing to manage traffic to revocation servers. Monitor revocation systems for signs of DoS attacks and respond promptly.
+
+6. **Elevation of Privilege**
+   - **Threat:** If an attacker can compromise the revocation mechanism, they could potentially bypass revocation checks, allowing them to use compromised credentials to gain unauthorized access or escalate privileges.
+   - **Mitigation:** Enforce strict access controls on the revocation mechanism. Use the principle of least privilege to restrict who can initiate or modify revocation actions. Regularly review and update security policies related to revocation to ensure they address potential vulnerabilities.
+
