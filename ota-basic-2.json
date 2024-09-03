@@ -3,7 +3,7 @@
   "summary": {
     "title": "OTA Basic",
     "owner": "Yasho",
-    "description": "Model of an OTA update system ",
+    "description": "OTA update system and threats associated with it.",
     "id": 0
   },
   "detail": {
@@ -631,7 +631,7 @@
       },
       {
         "id": 1,
-        "title": "OTA Stride 2",
+        "title": "Strawman OTA Stride 2",
         "diagramType": "STRIDE",
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
@@ -639,8 +639,8 @@
         "cells": [
           {
             "position": {
-              "x": 779.5,
-              "y": 381
+              "x": 1350,
+              "y": 686
             },
             "size": {
               "width": 370,
@@ -652,8 +652,8 @@
                 "text": "Device Trust Boundary"
               }
             },
-            "id": "66f5bd90-33e0-4c99-8262-86633cca56f3",
             "zIndex": -1,
+            "id": "66f5bd90-33e0-4c99-8262-86633cca56f3",
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Device Trust Boundary",
@@ -664,8 +664,8 @@
           },
           {
             "position": {
-              "x": 799,
-              "y": 160
+              "x": 1549,
+              "y": 360
             },
             "size": {
               "width": 200,
@@ -676,8 +676,8 @@
                 "text": "Firmware & Software images"
               },
               "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
@@ -691,13 +691,13 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "providesAuthentication": false,
               "threats": [
                 {
                   "id": "b6d3f2d2-5dc6-4155-b3a0-cd1cd8313b3f",
                   "title": "Spoofing identity of legitimate source",
-                  "status": "Open",
+                  "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Spoofing",
                   "description": "An attacker may attempt to spoof the identity of the legitimate update source and trick the devices into downloading and installing firmware from a malicious source",
@@ -725,20 +725,20 @@
           },
           {
             "position": {
-              "x": 24.25,
-              "y": 240
+              "x": 542,
+              "y": 360
             },
             "size": {
-              "width": 112.5,
-              "height": 60
+              "width": 330,
+              "height": 220
             },
             "attrs": {
               "text": {
                 "text": "Update server"
               },
               "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
@@ -752,7 +752,7 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "providesAuthentication": false,
               "threats": [
                 {
@@ -780,27 +780,14 @@
                   "new": false,
                   "number": 27,
                   "score": ""
-                },
-                {
-                  "id": "c0ea9235-64bf-4268-b8ca-0a9c21733072",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Spoofing",
-                  "description": "Provide a description for this threat",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
-                  "modelType": "STRIDE",
-                  "new": true,
-                  "number": 0,
-                  "score": ""
                 }
               ]
             }
           },
           {
             "position": {
-              "x": 799,
-              "y": 406
+              "x": 1369.5,
+              "y": 711
             },
             "size": {
               "width": 200,
@@ -811,8 +798,8 @@
                 "text": "Device authentication\ncredentials (keys)"
               },
               "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
@@ -826,7 +813,7 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "providesAuthentication": false,
               "threats": [
                 {
@@ -841,27 +828,14 @@
                   "new": false,
                   "number": 35,
                   "score": ""
-                },
-                {
-                  "id": "f386fb68-0403-4f2f-8570-495741bd6221",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Spoofing",
-                  "description": "Provide a description for this threat",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
-                  "modelType": "STRIDE",
-                  "new": true,
-                  "number": 0,
-                  "score": ""
                 }
               ]
             }
           },
           {
             "position": {
-              "x": 20.25,
-              "y": 386
+              "x": 636.5,
+              "y": 711
             },
             "size": {
               "width": 120,
@@ -901,12 +875,12 @@
           },
           {
             "position": {
-              "x": 799,
-              "y": 286
+              "x": 561.5,
+              "y": 510
             },
             "size": {
-              "width": 200,
-              "height": 80
+              "width": 170,
+              "height": 50
             },
             "attrs": {
               "text": {
@@ -930,13 +904,27 @@
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "c24bb41f-33b8-4289-9d08-ad271d8086a8",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Update authentication credentials could be stolen or forged to impersonate a legitimate (or older) update, tricking devices to install malicious updates.",
+                  "mitigation": "Store authentication credentials securely on the device, using hardware-based security modules such as TPM (Trusted Platform Module) or HSM (Hardware Security Module). Implement multi-factor authentication where possible.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 50,
+                  "score": ""
+                }
+              ]
             }
           },
           {
             "position": {
-              "x": 313,
-              "y": 276
+              "x": 1063,
+              "y": 476
             },
             "size": {
               "width": 210,
@@ -944,7 +932,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Communication\nChannels"
+                "text": "Wireless \ncommunication \nchannel"
               },
               "body": {
                 "stroke": "#333333",
@@ -958,7 +946,7 @@
             "id": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915",
             "data": {
               "type": "tm.Process",
-              "name": "Communication\nChannels",
+              "name": "Wireless \ncommunication \nchannel",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -967,47 +955,92 @@
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "ab8a75dd-bf75-4f21-b5b3-9dcd3bcbe4e3",
+                  "title": "Spoofing identity of endpoints",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker could impersonate either endpoints and trick the other into thinking they have established a connection with the legitimate endpoint and then intercept traffic between the update server and device.",
+                  "mitigation": "Use mutual authentication protocols (like TLS certificates) to ensure that both the update server and the TLS client verify each others' identities before transmitting data.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 39,
+                  "score": ""
+                },
+                {
+                  "id": "24ec8fea-fc3f-4100-b484-2d7cb6166c9c",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker could intercept and alter the data being sent over the communication channel ",
+                  "mitigation": "Employ end-to-end encryption using protocols like TLS to protect data integrity and confidentiality during transmission. Use cryptographic hash functions and digital signatures to ensure data has not been tampered with.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 41,
+                  "score": ""
+                },
+                {
+                  "id": "84d10396-219e-4661-94c8-79002b6ffef4",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker could read the data being transmitted over the communication channel and capture sensitive information such as firmware details, keys, personal data, etc.",
+                  "mitigation": "Use strong encryption protocols like TLS to encrypt the data being transmitted. Implement access control and monitor network traffic for detecting eavesdropping/MITM scenarios.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 42,
+                  "score": ""
+                },
+                {
+                  "id": "1044ec81-c5ca-4a77-912c-777a9f263fc8",
+                  "title": "New STRIDE threat",
+                  "status": "NotApplicable",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Either party could deny having sent or received any the firmware update/other data sent over the channel.",
+                  "mitigation": "Mitigations such as implementation of strong logging mechanisms on both ends won't be for the communication channel, but for the two parties involved ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 43,
+                  "score": ""
+                },
+                {
+                  "id": "eb70de39-82c2-4a66-b33e-2dce888ccf38",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker could flood the communication channel with traffic, overwhelming it and preventing any legitimate flow of traffic, disrupting the update process. ",
+                  "mitigation": "Implement rate limiting, traffic filtering, anomaly detection, etc. to detect and avoid DoS attacks. Use load balancing and redundancy to ensure that legitimate traffic can reach its destination. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 44,
+                  "score": ""
+                },
+                {
+                  "id": "bb8a5f0a-4e2c-4d2c-9c16-35f6aaab62f9",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Elevation of privilege on the network could give the attacker unauthorized access to the server or the device and alter the update process.",
+                  "mitigation": "Segment network traffic and enforce strict firewall rules to limit communication paths. Use intrusion detection and prevention systems (IDPS) to monitor and respond to suspicious activities. Ensure that communication channels are secured using strong, up-to-date cryptographic protocols.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 45,
+                  "score": ""
+                }
+              ]
             }
           },
           {
             "position": {
-              "x": 1027,
-              "y": 416
-            },
-            "size": {
-              "width": 112.5,
-              "height": 60
-            },
-            "attrs": {
-              "text": {
-                "text": "User data"
-              },
-              "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
-                "strokeDasharray": null
-              }
-            },
-            "visible": true,
-            "shape": "actor",
-            "zIndex": 7,
-            "id": "8a2e2962-c300-4558-8698-acd309d540fb",
-            "data": {
-              "type": "tm.Actor",
-              "name": "User data",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "providesAuthentication": false,
-              "threats": []
-            }
-          },
-          {
-            "position": {
-              "x": 1037,
-              "y": 175
+              "x": 1787,
+              "y": 375
             },
             "size": {
               "width": 112.5,
@@ -1037,42 +1070,6 @@
               "providesAuthentication": false,
               "threats": []
             }
-          },
-          {
-            "shape": "trust-boundary-curve",
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Boundary",
-              "name": "OEM Server side \ntrust boundary",
-              "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
-            },
-            "id": "797a205d-bb65-47fa-923c-e4534b9a9965",
-            "labels": [
-              "OEM Server side \ntrust boundary"
-            ],
-            "source": {
-              "x": 130,
-              "y": 170
-            },
-            "target": {
-              "x": 120,
-              "y": 560
-            },
-            "vertices": [
-              {
-                "x": 170,
-                "y": 270
-              },
-              {
-                "x": 170,
-                "y": 430
-              }
-            ]
           },
           {
             "shape": "flow",
@@ -1107,8 +1104,8 @@
             },
             "id": "d66cf89d-69c9-4c13-b42a-676b8d371beb",
             "source": {
-              "x": 999,
-              "y": 205
+              "x": 1749,
+              "y": 405
             },
             "target": {
               "cell": "726b0350-daef-47a9-a14c-9f4040a0bf0d"
@@ -1132,105 +1129,29 @@
               "Vehicle Trust Boundary"
             ],
             "source": {
-              "x": 740,
-              "y": 100
+              "x": 1490,
+              "y": 300
             },
             "target": {
-              "x": 760,
-              "y": 570
+              "x": 1310,
+              "y": 856
             },
             "vertices": [
               {
-                "x": 700,
-                "y": 340
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Update image",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "a9adc947-e9a9-4a6d-86a3-c3990f2ae7ad",
-                  "title": "New STRIDE threat",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "An attacker could tamper with the information being sent over the communication channel and send potentially malicious software to the device",
-                  "mitigation": "Ensure that communication channels are encrypted using strong protocols like TLS. Implement integrity checks like digital signatures to detect any tampering upon receipt by the device.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 29,
-                  "score": ""
-                },
-                {
-                  "id": "8c6bebc5-75c5-4247-84ec-1b827a18daa5",
-                  "title": "New STRIDE threat",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "An attacker could intercept the data being sent over the communication channel and potentially gain access to privileged information or intellectual property. ",
-                  "mitigation": "Use encryption for data at rest and in transit and implement RBAC for files on the server. ",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 31,
-                  "score": ""
-                },
-                {
-                  "id": "92d2fd7d-2eef-455d-9b6a-b69bde29145d",
-                  "title": "New STRIDE threat",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "An attacker could overload the update server with requests, making it unavailable to legitimate devices attempting to download updates",
-                  "mitigation": "Implement rate limiting, traffic filtering and load balancing to measure server traffic. Monitor users to detect, flag and avoid DoS attacks",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 32,
-                  "score": ""
-                }
-              ]
-            },
-            "id": "4b0d5591-6693-4e0b-82d9-bcf68b483332",
-            "labels": [
-              "Update image"
-            ],
-            "source": {
-              "cell": "e84ecfa4-c7ab-48b5-b667-302ae6c22ec0"
-            },
-            "target": {
-              "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
-            },
-            "vertices": [
+                "x": 1460,
+                "y": 396
+              },
               {
-                "x": 270,
-                "y": 290
+                "x": 1460,
+                "y": 566
+              },
+              {
+                "x": 1360,
+                "y": 616
+              },
+              {
+                "x": 1310,
+                "y": 696
               }
             ]
           },
@@ -1300,17 +1221,16 @@
               "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
             },
             "target": {
-              "x": 140,
-              "y": 280
+              "cell": "e84ecfa4-c7ab-48b5-b667-302ae6c22ec0"
             },
             "vertices": [
               {
-                "x": 230,
-                "y": 320
+                "x": 980,
+                "y": 520
               },
               {
-                "x": 190,
-                "y": 310
+                "x": 940,
+                "y": 510
               }
             ]
           },
@@ -1334,7 +1254,232 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Update image",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "001ee53e-9574-472d-88e7-3a8f8e3e086b",
+            "source": {
+              "cell": "0e1def14-5e92-4f50-bd11-bdd691667507"
+            },
+            "target": {
+              "cell": "a64bda6e-500b-4acd-bc47-f153f2490f44"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Update package",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "a9adc947-e9a9-4a6d-86a3-c3990f2ae7ad",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker could tamper with the information being sent over the communication channel and send potentially malicious software to the device",
+                  "mitigation": "Ensure that communication channels are encrypted using strong protocols like TLS. Implement integrity checks like digital signatures to detect any tampering upon receipt by the device.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": ""
+                },
+                {
+                  "id": "8c6bebc5-75c5-4247-84ec-1b827a18daa5",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker could intercept the data being sent over the communication channel and potentially gain access to privileged information or intellectual property. ",
+                  "mitigation": "Use encryption for data at rest and in transit and implement RBAC for files on the server. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": ""
+                },
+                {
+                  "id": "92d2fd7d-2eef-455d-9b6a-b69bde29145d",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker could overload the update server with requests, making it unavailable to legitimate devices attempting to download updates",
+                  "mitigation": "Implement rate limiting, traffic filtering and load balancing to measure server traffic. Monitor users to detect, flag and avoid DoS attacks",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "4b0d5591-6693-4e0b-82d9-bcf68b483332",
+            "labels": [
+              "Update package"
+            ],
+            "source": {
+              "cell": "a64bda6e-500b-4acd-bc47-f153f2490f44"
+            },
+            "target": {
+              "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
+            },
+            "vertices": [
+              {
+                "x": 1020,
+                "y": 490
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "38e941d7-279b-4921-951b-5806b3767ed2",
+            "source": {
+              "cell": "cc146b71-c30a-4ffc-8559-c1e1e1dd6d29"
+            },
+            "target": {
+              "cell": "a64bda6e-500b-4acd-bc47-f153f2490f44"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "118256df-dd44-4f73-9609-bdf17b802e63",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Device authentication credentials can be altered by a middleman/attacker and used to redirect/deny updates to the device",
+                  "mitigation": "Ensure that strong encryption mechanisms are in place, both when the credentials are at rest and in transit. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 38,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "b88f9d37-ee32-48ed-a5c8-5456f1a42f01",
+            "source": {
+              "cell": "90d5c2c8-5850-4895-9aa3-040ed15a174b"
+            },
+            "target": {
+              "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
+            },
+            "vertices": [
+              {
+                "x": 1240,
+                "y": 676
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Update package",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -1387,7 +1532,7 @@
             },
             "id": "14d38c9d-5735-4550-ab80-ed1cbd11315d",
             "labels": [
-              "Update image"
+              "Update package"
             ],
             "source": {
               "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
@@ -1397,106 +1542,264 @@
             },
             "vertices": [
               {
-                "x": 600,
-                "y": 300
+                "x": 1350,
+                "y": 500
               }
             ]
           },
           {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
+            "shape": "trust-boundary-curve",
             "width": 200,
             "height": 100,
             "zIndex": 10,
             "connector": "smooth",
             "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
+              "type": "tm.Boundary",
+              "name": "OEM side \ntrust boundary",
               "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
             },
-            "id": "b88f9d37-ee32-48ed-a5c8-5456f1a42f01",
+            "id": "797a205d-bb65-47fa-923c-e4534b9a9965",
+            "labels": [
+              "OEM side \ntrust boundary"
+            ],
             "source": {
-              "cell": "90d5c2c8-5850-4895-9aa3-040ed15a174b"
+              "x": 890,
+              "y": 290
             },
             "target": {
-              "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
+              "x": 850,
+              "y": 890
             },
             "vertices": [
               {
-                "x": 580,
-                "y": 400
+                "x": 920,
+                "y": 470
+              },
+              {
+                "x": 920,
+                "y": 630
               }
             ]
           },
           {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
+            "shape": "trust-boundary-curve",
             "width": 200,
             "height": 100,
             "zIndex": 10,
             "connector": "smooth",
             "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
+              "type": "tm.Boundary",
+              "name": "Update server trust boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "079de1e4-dc0a-43ac-9ee2-fff819a32987",
+            "source": {
+              "x": 490,
+              "y": 580
+            },
+            "target": {
+              "x": 900,
+              "y": 550
+            },
+            "vertices": [
+              {
+                "x": 670,
+                "y": 630
+              },
+              {
+                "x": 850,
+                "y": 600
+              }
+            ],
+            "labels": [
+              "Update server trust boundary"
+            ]
+          },
+          {
+            "position": {
+              "x": 1619,
+              "y": 711
+            },
+            "size": {
+              "width": 80,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "User data"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 11,
+            "id": "324f5278-078b-498f-b59b-2394bab50dd0",
+            "data": {
+              "type": "tm.Process",
+              "name": "User data",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "8df0ed3b-122a-4726-a75f-11515c31aff9",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker may alter user data which may affect vehicle operation and user experience",
+                  "mitigation": "Protect on-board user data by enforcing access control, implementing strong integrity checks, cryptographic hashes. Regularly back user data up and allow for recovery in case of tampering.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 48,
+                  "score": ""
+                },
+                {
+                  "id": "81f5854c-57cf-4c35-a03e-2a34d72615ee",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Unauthorized access to user data could lead to exposure of sensitive information such as personal details, location, etc. resulting in privacy violations and theft. ",
+                  "mitigation": "Encrypt user data at rest and in transit. Implement access control and regularly audit who has access to data. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 49,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 591.5,
+              "y": 375
             },
-            "id": "81f004ed-fa72-45a1-876a-760385d03a79",
-            "source": {
-              "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
+            "size": {
+              "width": 110,
+              "height": 50
             },
-            "target": {
-              "cell": "0e1def14-5e92-4f50-bd11-bdd691667507"
-            },
-            "vertices": [
-              {
-                "x": 690,
-                "y": 316
+            "attrs": {
+              "text": {
+                "text": "Update image"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
               }
-            ]
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "cc146b71-c30a-4ffc-8559-c1e1e1dd6d29",
+            "zIndex": 12,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Update image",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 772,
+              "y": 430
+            },
+            "size": {
+              "width": 90,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Packaging"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "a64bda6e-500b-4acd-bc47-f153f2490f44",
+            "zIndex": 13,
+            "data": {
+              "type": "tm.Process",
+              "name": "Packaging",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "bfed034f-b987-4512-bc0a-fa681a89d18c",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Unauthorized access to alter the items to package will lead to potentially malicious/harmful items getting packaged as part of the update payload. ",
+                  "mitigation": "Verify cryptographic hashes of each item to pack before packaging them. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 52,
+                  "score": ""
+                },
+                {
+                  "id": "68fb2f86-b20d-4da0-b7a8-58c373b1af87",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Unauthorized parties may be able to read the update to be packaged, leading to loss of sensitive information or intellectual property. ",
+                  "mitigation": "Encrypt all packages to be packaged, and then the final package. Implement RBAC and monitor the network for any anomalies. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 53,
+                  "score": ""
+                },
+                {
+                  "id": "01ad02e7-1ee2-40a3-9293-fc028c65f1e8",
+                  "title": "DoS",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Packaging service may be overburdened by creation of a large number of processes, causing it to prevent packaging the required items to be shipped. ",
+                  "mitigation": "Implement redundancy of packaging service to ensure it is up in case of DoS. Implement network monitoring and rate limiting to detect and prevent attacks. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 59,
+                  "score": ""
+                }
+              ]
+            }
           }
-        ]
+        ],
+        "description": "Strawman model of an OTA update system. This does not include a \"gateway ECU\". It is assumed that the update package is to be installed on the same ECU that receives the payload from the update server."
       }
     ],
     "diagramTop": 2,
     "reviewer": "Phil",
-    "threatTop": 37
+    "threatTop": 59
   }
 }
