@@ -6,3 +6,9 @@ Some sort of "verification" akin to the one done on the vehicle must be done on 
 
 ### Second thing 
 I don't remember what it was but I'll add this in after discussing with Phil.
+
+### Third thing
+Remote attestations
+
+### Disambiguate report
+Change the usage of the word "report" where it is a verb to "flag" or "record" or "log"
