@@ -1,0 +1,5107 @@
+{
+  "version": "2.2.0",
+  "summary": {
+    "title": "OTA Basic",
+    "owner": "Yasho",
+    "description": "OTA update system and threats associated with it.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 1,
+        "title": "Strawman OTA Stride 2",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 1560,
+              "y": 690
+            },
+            "size": {
+              "width": 490,
+              "height": 270
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Target ECU Trust Boundary"
+              }
+            },
+            "zIndex": -1,
+            "id": "66f5bd90-33e0-4c99-8262-86633cca56f3",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Target ECU Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1318,
+              "y": 380.00000000000165
+            },
+            "size": {
+              "width": 700,
+              "height": 160
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Gateway ECU Trust Boundary"
+              }
+            },
+            "zIndex": -1,
+            "id": "bd71625f-64bf-4a4d-80d0-83f4d7513cec",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Gateway ECU Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1615,
+              "y": 410
+            },
+            "size": {
+              "width": 200,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Firmware & Software images"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "id": "ce5d9a9b-37c1-4ebc-b173-48503f54ce7c",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Firmware & Software images",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "b6d3f2d2-5dc6-4155-b3a0-cd1cd8313b3f",
+                  "title": "Spoofing identity of legitimate source",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker may attempt to spoof the identity of the legitimate update source and trick the devices into downloading and installing firmware from a malicious source",
+                  "mitigation": " Use digital signatures and certificates to verify the identity of the source before accepting and applying the update. Employing cryptographic mechanisms ensures that only firmware signed by a trusted entity is installed.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                },
+                {
+                  "id": "04060be9-02fe-4204-b824-dd00afc0f3c7",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "The update server could deny supplying a particular firmware version or the device could deny receiving and installing the update",
+                  "mitigation": "Ensure secure logging and auditing on both the OEM's update server and the ECU installing an update. Logs should be tamper proof and include details of the firmware updates, including sources and checksums",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": "3"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 540,
+              "y": 330
+            },
+            "size": {
+              "width": 330,
+              "height": 290
+            },
+            "attrs": {
+              "text": {
+                "text": "Update server"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 2,
+            "id": "e84ecfa4-c7ab-48b5-b667-302ae6c22ec0",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Update server",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "06578a19-d642-40e0-9888-8c716e53314c",
+                  "title": "Spoofing",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker may try to spoof the identity of the update server and trick devices into thinking they are communicating with the legitimate server. ",
+                  "mitigation": "Use strong authentication mechanisms like TLS certificates to verify the identity of the update servers. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": ""
+                },
+                {
+                  "id": "57c52d37-c6a4-40aa-bb78-2c09c3f2856b",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The update server could deny sending a firmware version or deny having sent it.",
+                  "mitigation": "Implement logging and auditing on both, the ECU and the update server. Logs should be secure and should record all information regarding the firmware update, including timestamp, firmware numbers, hashes, filenames, etc.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 376.5,
+              "y": 665.000000000004
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "OEM SW & FW \ndatabase"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": "4 3"
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 4,
+            "id": "d8fd8f48-b119-4bd6-bbb1-13d1d98ec3e0",
+            "data": {
+              "type": "tm.Store",
+              "name": "OEM SW & FW \ndatabase",
+              "description": "",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "a5aba258-2f38-4110-b6b5-ab379e3e9a67",
+                  "title": "Tampering",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Software images stored on the OEM's server can be modified, thereby compromising ALL updates to ALL vehicles under the OEM.",
+                  "mitigation": "Ensure strong network and physical security practices",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 70,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 559.5000000000006,
+              "y": 549.9999999999995
+            },
+            "size": {
+              "width": 170,
+              "height": 50
+            },
+            "attrs": {
+              "text": {
+                "text": "Update authentication\ncredentials"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 5,
+            "id": "0e1def14-5e92-4f50-bd11-bdd691667507",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Update authentication\ncredentials",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "c24bb41f-33b8-4289-9d08-ad271d8086a8",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Update authentication credentials could be stolen or forged to impersonate a legitimate (or older) update, tricking devices to install malicious updates.",
+                  "mitigation": "Store authentication credentials securely on the device, using hardware-based security modules such as TPM (Trusted Platform Module) or HSM (Hardware Security Module). Implement multi-factor authentication where possible.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 50,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1318,
+              "y": 390
+            },
+            "size": {
+              "width": 210,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Gateway ECU"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 6,
+            "id": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915",
+            "data": {
+              "type": "tm.Process",
+              "name": "Gateway ECU",
+              "description": "(the internet)",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "ab8a75dd-bf75-4f21-b5b3-9dcd3bcbe4e3",
+                  "title": "Spoofing identity of endpoints",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker could impersonate either endpoints and trick the other into thinking they have established a connection with the legitimate endpoint and then intercept traffic between the update server and device.",
+                  "mitigation": "Use mutual authentication protocols (like TLS certificates) to ensure that both the update server and the TLS client verify each others' identities before transmitting data.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 39,
+                  "score": ""
+                },
+                {
+                  "id": "24ec8fea-fc3f-4100-b484-2d7cb6166c9c",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker could intercept and alter the data being sent over the communication channel ",
+                  "mitigation": "Employ end-to-end encryption using protocols like TLS to protect data integrity and confidentiality during transmission. Use cryptographic hash functions and digital signatures to ensure data has not been tampered with.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 41,
+                  "score": ""
+                },
+                {
+                  "id": "84d10396-219e-4661-94c8-79002b6ffef4",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker could read the data being transmitted over the communication channel and capture sensitive information such as firmware details, keys, personal data, etc.",
+                  "mitigation": "Use strong encryption protocols like TLS to encrypt the data being transmitted. Implement access control and monitor network traffic for detecting eavesdropping/MITM scenarios.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 42,
+                  "score": ""
+                },
+                {
+                  "id": "1044ec81-c5ca-4a77-912c-777a9f263fc8",
+                  "title": "New STRIDE threat",
+                  "status": "NotApplicable",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Either party could deny having sent or received any the firmware update/other data sent over the channel.",
+                  "mitigation": "Mitigations such as implementation of strong logging mechanisms on both ends won't be for the communication channel, but for the two parties involved ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 43,
+                  "score": ""
+                },
+                {
+                  "id": "eb70de39-82c2-4a66-b33e-2dce888ccf38",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker could flood the gateway ECU with traffic, overwhelming it and preventing any legitimate flow of traffic, disrupting the update process. ",
+                  "mitigation": "Implement rate limiting, traffic filtering, anomaly detection, etc. to detect and avoid DoS attacks. Use load balancing and redundancy to ensure that legitimate traffic can reach its destination. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 44,
+                  "score": ""
+                },
+                {
+                  "id": "bb8a5f0a-4e2c-4d2c-9c16-35f6aaab62f9",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Elevation of privilege on the network could give the attacker unauthorized access to the server or the device and alter the update process.",
+                  "mitigation": "Segment network traffic and enforce strict firewall rules to limit communication paths. Use intrusion detection and prevention systems (IDPS) to monitor and respond to suspicious activities. Ensure that communication channels are secured using strong, up-to-date cryptographic protocols.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 45,
+                  "score": ""
+                },
+                {
+                  "id": "81fedb49-b5e3-4ea0-ae88-478463703a35",
+                  "title": "Slow retrieval attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker or someone claiming to be the vehicle can slow down network traffic, sending only enough packets to avoid timeouts. ",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 81,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1853,
+              "y": 425
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Update metadata"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 8,
+            "id": "726b0350-daef-47a9-a14c-9f4040a0bf0d",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Update metadata",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "d66cf89d-69c9-4c13-b42a-676b8d371beb",
+            "source": {
+              "x": 1815,
+              "y": 455
+            },
+            "target": {
+              "cell": "726b0350-daef-47a9-a14c-9f4040a0bf0d"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "001ee53e-9574-472d-88e7-3a8f8e3e086b",
+            "source": {
+              "cell": "0e1def14-5e92-4f50-bd11-bdd691667507"
+            },
+            "target": {
+              "cell": "a64bda6e-500b-4acd-bc47-f153f2490f44"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "38e941d7-279b-4921-951b-5806b3767ed2",
+            "source": {
+              "cell": "cc146b71-c30a-4ffc-8559-c1e1e1dd6d29"
+            },
+            "target": {
+              "cell": "a64bda6e-500b-4acd-bc47-f153f2490f44"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "96342b03-763e-4fbe-9188-2cf0a3bb63b9",
+            "source": {
+              "cell": "d8fd8f48-b119-4bd6-bbb1-13d1d98ec3e0"
+            },
+            "target": {
+              "cell": "cc146b71-c30a-4ffc-8559-c1e1e1dd6d29"
+            },
+            "vertices": [
+              {
+                "x": 414.50000000000057,
+                "y": 449.99999999999943
+              },
+              {
+                "x": 528.0000000000006,
+                "y": 369.99999999999943
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Update package",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "efe0bcc9-1216-4618-81bc-c9b620417b5c",
+            "source": {
+              "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
+            },
+            "target": {
+              "cell": "ce5d9a9b-37c1-4ebc-b173-48503f54ce7c"
+            },
+            "vertices": [
+              {
+                "x": 1540,
+                "y": 455
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Device \nauthentication keys,\nupdate request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "WiFi/4G/5G",
+              "threats": [
+                {
+                  "id": "1535ff27-1822-4d9e-9091-e302df41992a",
+                  "title": "Tampering with update request",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker can modify the requested updates by the vehicle and make the update server send inaccurate images back to the vehicle",
+                  "mitigation": "Ensure that communication channels are encrypted using strong protocols like TLS. Implement integrity checks like digital signatures to detect any tampering upon receipt by the server.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 68,
+                  "score": ""
+                },
+                {
+                  "id": "47bca19e-ccaf-45b2-95aa-7e8a2940665f",
+                  "title": "Stealing device keys",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Unauthorized access can lead to the device's keys and other credentials (like VIN) to be stolen by an attacker",
+                  "mitigation": "Encrypt the communication channel with strong, standard encryption protocols like TLS.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 69,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "a5794a19-fede-4697-981b-4c7c4ac79969",
+            "labels": [
+              "Device \nauthentication keys,\nupdate request"
+            ],
+            "source": {
+              "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
+            },
+            "target": {
+              "cell": "e84ecfa4-c7ab-48b5-b667-302ae6c22ec0"
+            },
+            "vertices": [
+              {
+                "x": 1080,
+                "y": 550
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Distributor side \ntrust boundary",
+              "description": "Tier-1 supplier OR OEM",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "797a205d-bb65-47fa-923c-e4534b9a9965",
+            "labels": [
+              "Distributor side \ntrust boundary"
+            ],
+            "source": {
+              "x": 850,
+              "y": 240
+            },
+            "target": {
+              "x": 820,
+              "y": 770
+            },
+            "vertices": [
+              {
+                "x": 940,
+                "y": 400
+              },
+              {
+                "x": 920,
+                "y": 630
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "CAN/ETH",
+              "threats": []
+            },
+            "id": "c51d218c-7b79-4809-8159-952780266720",
+            "source": {
+              "cell": "ce5d9a9b-37c1-4ebc-b173-48503f54ce7c"
+            },
+            "target": {
+              "cell": "371bcf98-870b-4f28-8f9b-e201ac4bbcca"
+            },
+            "vertices": [
+              {
+                "x": 1780,
+                "y": 520
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "CAN/ETH",
+              "threats": []
+            },
+            "id": "114b6b51-0f34-480c-bf8b-6cf243109702",
+            "source": {
+              "cell": "371bcf98-870b-4f28-8f9b-e201ac4bbcca"
+            },
+            "target": {
+              "cell": "cb818284-8eec-46a4-af8f-73de5eb08617"
+            },
+            "vertices": [
+              {
+                "x": 1920,
+                "y": 664.9999999999981
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "0c79e028-a3f3-4913-bea3-298728dad07a",
+            "source": {
+              "cell": "cb818284-8eec-46a4-af8f-73de5eb08617"
+            },
+            "target": {
+              "cell": "c6b2697c-440d-4b4b-b6c5-8175053e60a8"
+            },
+            "vertices": [
+              {
+                "x": 1940,
+                "y": 864.9999999999981
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Vehicle Trust\nBoundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "f613fa50-d5ce-44ef-922c-896ed1f25e72",
+            "labels": [
+              "Vehicle Trust\nBoundary"
+            ],
+            "source": {
+              "x": 1350,
+              "y": 220
+            },
+            "target": {
+              "x": 1550,
+              "y": 980
+            },
+            "vertices": [
+              {
+                "x": 1270,
+                "y": 590
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Update package",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "WiFi/4G/5G",
+              "threats": [
+                {
+                  "id": "a9adc947-e9a9-4a6d-86a3-c3990f2ae7ad",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker could tamper with the information being sent over the communication channel and send potentially malicious software to the device",
+                  "mitigation": "Ensure that communication channels are encrypted using strong protocols like TLS. Implement integrity checks like digital signatures to detect any tampering upon receipt by the device.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": ""
+                },
+                {
+                  "id": "8c6bebc5-75c5-4247-84ec-1b827a18daa5",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker could intercept the data being sent over the communication channel and potentially gain access to privileged information or intellectual property. ",
+                  "mitigation": "Use encryption for data at rest and in transit and implement RBAC for files on the server. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": ""
+                },
+                {
+                  "id": "92d2fd7d-2eef-455d-9b6a-b69bde29145d",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker could overload the update server with requests, making it unavailable to legitimate devices attempting to download updates",
+                  "mitigation": "Implement rate limiting, traffic filtering and load balancing to measure server traffic. Monitor users to detect, flag and avoid DoS attacks",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "4b0d5591-6693-4e0b-82d9-bcf68b483332",
+            "labels": [
+              "Update package"
+            ],
+            "source": {
+              "cell": "a64bda6e-500b-4acd-bc47-f153f2490f44"
+            },
+            "target": {
+              "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
+            },
+            "vertices": [
+              {
+                "x": 1110,
+                "y": 380
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Update\nserver\ntrust boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "cd10c48a-219c-4dd6-ae57-5212fce3edc5",
+            "labels": [
+              "Update\nserver\ntrust boundary"
+            ],
+            "source": {
+              "x": 520,
+              "y": 260
+            },
+            "target": {
+              "x": 590,
+              "y": 690
+            },
+            "vertices": [
+              {
+                "x": 480,
+                "y": 550
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Update\nrequest",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "CAN/ETH",
+              "threats": []
+            },
+            "id": "9d40497a-fd27-4ac7-9a60-d9b5065990b9",
+            "labels": [
+              "Update\nrequest"
+            ],
+            "source": {
+              "cell": "66f5bd90-33e0-4c99-8262-86633cca56f3"
+            },
+            "target": {
+              "cell": "aa73d92e-d4f8-4d86-bfbf-bf8e578a1915"
+            },
+            "vertices": [
+              {
+                "x": 1500,
+                "y": 730
+              },
+              {
+                "x": 1450,
+                "y": 650
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 589.5000000000006,
+              "y": 369.99999999999943
+            },
+            "size": {
+              "width": 110,
+              "height": 50
+            },
+            "attrs": {
+              "text": {
+                "text": "Update image"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 12,
+            "id": "cc146b71-c30a-4ffc-8559-c1e1e1dd6d29",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Update image",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 760.0000000000006,
+              "y": 424.99999999999943
+            },
+            "size": {
+              "width": 90,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Packaging"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 13,
+            "id": "a64bda6e-500b-4acd-bc47-f153f2490f44",
+            "data": {
+              "type": "tm.Process",
+              "name": "Packaging",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "bfed034f-b987-4512-bc0a-fa681a89d18c",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Unauthorized access to alter the items to package will lead to potentially malicious/harmful items getting packaged as part of the update payload. ",
+                  "mitigation": "Verify cryptographic hashes of each item to pack before packaging them. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 52,
+                  "score": ""
+                },
+                {
+                  "id": "68fb2f86-b20d-4da0-b7a8-58c373b1af87",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Unauthorized parties may be able to read the update to be packaged, leading to loss of sensitive information or intellectual property. ",
+                  "mitigation": "Encrypt all packages to be packaged, and then the final package. Implement RBAC and monitor the network for any anomalies. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 53,
+                  "score": ""
+                },
+                {
+                  "id": "01ad02e7-1ee2-40a3-9293-fc028c65f1e8",
+                  "title": "DoS",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Packaging service may be overburdened by creation of a large number of processes, causing it to prevent packaging the required items to be shipped. ",
+                  "mitigation": "Implement redundancy of packaging service to ensure it is up in case of DoS. Implement network monitoring and rate limiting to detect and prevent attacks. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 59,
+                  "score": ""
+                },
+                {
+                  "id": "abeb54f4-48dc-4a23-a519-ac946d30cdf4",
+                  "title": "endless data attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Send ECU a large amount of data and flood its memory, possibly causing the ECU to fail to operate",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 88,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1829,
+              "y": 559.9999999999995
+            },
+            "size": {
+              "width": 100,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Image\ndistribution"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 14,
+            "id": "371bcf98-870b-4f28-8f9b-e201ac4bbcca",
+            "data": {
+              "type": "tm.Process",
+              "name": "Image\ndistribution",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "The only way this software can be accessed is with physical access to the vehicle, this making it out of scope.",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "c344927b-9689-471d-a422-46f24c7e58cb",
+                  "title": "Freeze attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker may alter the functioning of the distribution software (if present on gateway ECU or through an update for the image distribution software) to send properly signed, but old update bundle to the ECUs, even if newer updates exist",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 82,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1929,
+              "y": 734.9999999999981
+            },
+            "size": {
+              "width": 100,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Rewrite\nSW image"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "cb818284-8eec-46a4-af8f-73de5eb08617",
+            "data": {
+              "type": "tm.Process",
+              "name": "Rewrite\nSW image",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1768,
+              "y": 848.9999999999981
+            },
+            "size": {
+              "width": 100,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Software\nImage"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 16,
+            "id": "c6b2697c-440d-4b4b-b6c5-8175053e60a8",
+            "data": {
+              "type": "tm.Process",
+              "name": "Software\nImage",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "6c547108-bd1c-4920-8e5b-d6ed02a11897",
+                  "title": "Arbitrary software attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "A malicious software bundle can cause an ECU to run arbitrary code of the attacker's choice",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 77,
+                  "score": ""
+                },
+                {
+                  "id": "32b49c37-aaed-48ef-9c89-91eb41292202",
+                  "title": "Rollback attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Deny the ECU of the latest update by causing it to install a previously valid software",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 78,
+                  "score": ""
+                },
+                {
+                  "id": "54cca2dd-6290-48a5-9f2e-f9e8edc27821",
+                  "title": "Mix-and-Match attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker can install a malicious software bundle in which some of the packages do not interoperate properly, by installing mismatched packages. ",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 80,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1578,
+              "y": 734.9999999999981
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Device authentication\ncredentials (keys)"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 17,
+            "id": "7251a67e-b75e-49ac-b64e-98294eb06191",
+            "data": {
+              "type": "tm.Store",
+              "name": "Device authentication\ncredentials (keys)",
+              "description": "should be on an HSM or TPM",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "c6ec14c1-a811-4ffb-b59b-686bf81890a9",
+                  "title": "Key leak",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker could steal the ECU's authentication credentials and use them to impersonate a legitimate device. ",
+                  "mitigation": "Store authentication credentials on a hardware-based security enclave like an HSM or TPM. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 83,
+                  "score": ""
+                },
+                {
+                  "id": "83ee79c4-739e-48ec-a135-9a1898f3e91d",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker may try to alter device's authentication credentials, giving them access to redirect updates and gain unauthorized access to sensitive data",
+                  "mitigation": "Use cryptographic techniques to protect the integrity of credentials. Implement effective access control to prevent unauthorized modification",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 84,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1769.5,
+              "y": 734.9999999999981
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "User data"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 18,
+            "id": "a67ca28f-21b8-487e-ab34-c9b655ee39b2",
+            "data": {
+              "type": "tm.Store",
+              "name": "User data",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "e7924f14-6699-4555-81df-37e2142e6384",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker could modify user data by exploiting vulnerabilities in the system, leading to data corruption and possible unavailability of the vehicle's functioning.",
+                  "mitigation": "Use integrity checks such as cryptographic hashes to detect unauthorized changes to the data. Implement secure storage solutions",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 85,
+                  "score": ""
+                },
+                {
+                  "id": "052b3e03-1476-4b85-befa-396568297dd8",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Unauthorized access to user data can lead to leaking of sensitive information such as personal details, affecting the user's privacy.",
+                  "mitigation": "Encrypt user data at rest and in transit to protect it from unauthorized changes. Implement effective access control mechanisms for this store.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 86,
+                  "score": ""
+                },
+                {
+                  "id": "e347c1ed-48b7-48f5-a8c3-0b64247bd62a",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker could disrupt access to the user's data, making it unavailable and/or causing loss of data. This could impact the vehicle's functionality and UX",
+                  "mitigation": "Implement redundancy and backup mechanisms to ensure availability of user data. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 87,
+                  "score": ""
+                }
+              ]
+            }
+          }
+        ],
+        "description": "Strawman model of an OTA update system. This does not include a \"gateway ECU\". It is assumed that the update package is to be installed on the same ECU that receives the payload from the update server."
+      },
+      {
+        "id": 2,
+        "title": "Uptane OTA solution",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 295.49999999999966,
+              "y": -79.99999999999912
+            },
+            "size": {
+              "width": 190,
+              "height": 300
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Update Images \ntrust boundary"
+              }
+            },
+            "zIndex": -1,
+            "id": "9661a28a-01ff-4bf7-aa44-a2b62c8b6d7a",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Update Images \ntrust boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 160.00000000000057,
+              "y": 490.00000000000114
+            },
+            "size": {
+              "width": 450,
+              "height": 130
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Image Trust Boundary"
+              }
+            },
+            "zIndex": -1,
+            "id": "90207e65-3095-41d2-a441-d9705dac6cc4",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Image Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1111,
+              "y": -172.00000000000222
+            },
+            "size": {
+              "width": 1120,
+              "height": 760
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Vehicle Trust Boundary"
+              }
+            },
+            "zIndex": -1,
+            "id": "75d7e54e-79c5-4ae9-ad82-af49bd73dcf0",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Vehicle Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1320,
+              "y": -99.99999999999875
+            },
+            "size": {
+              "width": 190,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Primary ECU\nnetwork module"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 2,
+            "id": "331fe8e3-7a22-4515-89df-4cae7704f5ce",
+            "data": {
+              "type": "tm.Process",
+              "name": "Primary ECU\nnetwork module",
+              "description": "Has public network access.\nVerifies images by checking that the hashes of the images match the hash specified by the director's target metadata",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "ff103fd5-ff76-422e-ab1e-68dc503a5154",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker may spoof the identity of the primary's network module and trick the director into thinking that it is communicating with a vehicle.",
+                  "mitigation": "Use mutual authentication protocols (like TLS with certificates), to ensure that primary ECU and the server ensure each other's identities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 152,
+                  "score": ""
+                },
+                {
+                  "id": "eedb9f67-936d-4a4e-9035-bed23c2adb3e",
+                  "title": "Slow retrieval attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Slow down network traffic outside of the vehicle, such that barely enough packets are sent to avoid a timeout.",
+                  "mitigation": "All ECUs shall monitor the download speed of image metadata and image binaries to detect a slow retrieval attack.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 155,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Manifest\nVerification",
+              "description": "Verifies if the vehicle version manifest provided by the vehicle is accurate according to records in the inventory database",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "d1245a1c-66bd-481a-af62-a04f96251a0e",
+            "labels": [
+              "Manifest\nVerification"
+            ],
+            "source": {
+              "cell": "4699e6aa-948a-4ce7-bb75-3ddaa5f5b418"
+            },
+            "target": {
+              "cell": "c9ab3b4d-7924-4de4-b0f8-541785e33aa4"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "560c10ce-3216-434d-b34f-1e2afadf9af5",
+            "source": {
+              "cell": "e1e7bdf1-a5e8-4ff3-a114-104f3bf25e83"
+            },
+            "target": {
+              "cell": "4e2771cd-e3e3-4d36-906a-bc1d5677c2ad"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "52580ab1-4b3d-4927-87aa-4794014e7219",
+            "source": {
+              "cell": "e030a2d3-baee-4a03-84d8-02f6489ef12e"
+            },
+            "target": {
+              "cell": "475075af-f50a-4b65-b001-64744802f4f4"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "651b3205-bcea-4b29-b065-fe5ee7128608",
+            "source": {
+              "cell": "e030a2d3-baee-4a03-84d8-02f6489ef12e"
+            },
+            "target": {
+              "cell": "307408a9-983c-400d-9378-5d369c241997"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "68bc29a1-f1c7-4d02-b537-ca998afb6f5a",
+            "source": {
+              "cell": "e030a2d3-baee-4a03-84d8-02f6489ef12e"
+            },
+            "target": {
+              "cell": "1592da7c-6b5a-4696-81ec-7b940a891957"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Upload",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "ed37ed67-930c-488c-b70f-b0d8476d35fe",
+            "labels": [
+              "Upload"
+            ],
+            "source": {
+              "cell": "b1ef1e76-c9ee-4402-a8af-fdb72b22ae09"
+            },
+            "target": {
+              "cell": "1055f7e1-e736-4311-a20c-d4c4d6a9b2c5"
+            },
+            "vertices": [
+              {
+                "x": 140.00000000000068,
+                "y": 633
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "61d716c4-bada-4ff3-86a2-a2cc6f0eac4c",
+            "source": {
+              "cell": "331fe8e3-7a22-4515-89df-4cae7704f5ce"
+            },
+            "target": {
+              "cell": "2fe2b1e0-faa2-452d-939e-2f2b77f7752e"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "e17fe5f8-4dd0-42be-8923-2895877c3dbc",
+            "source": {
+              "cell": "bc38d36f-2235-4225-a4ce-c68971252dcd"
+            },
+            "target": {
+              "cell": "331fe8e3-7a22-4515-89df-4cae7704f5ce"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "008c6453-407a-414d-bed0-2a096ee3201e",
+            "source": {
+              "cell": "2fe2b1e0-faa2-452d-939e-2f2b77f7752e"
+            },
+            "target": {
+              "cell": "e99238c5-14b8-4540-a59f-5579a16063bc"
+            }
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Director repo\ntrust boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "3ec67a0a-780f-46dd-8866-70d544d7c3b5",
+            "labels": [
+              "Director repo\ntrust boundary"
+            ],
+            "source": {
+              "x": -90,
+              "y": -370
+            },
+            "target": {
+              "x": 700,
+              "y": 390
+            },
+            "vertices": [
+              {
+                "x": -110,
+                "y": 0
+              },
+              {
+                "x": -80,
+                "y": 340
+              },
+              {
+                "x": 440,
+                "y": 390
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "3b744e92-0be1-4cf7-9258-7770b6465073",
+            "source": {
+              "cell": "d52eba29-9f7a-4b56-8c87-10500090eb9f"
+            },
+            "target": {
+              "cell": "4b80d8bd-18d2-4057-89fa-17231d409a35"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Images and\nassociated metadata",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "e5daa706-206f-4166-8038-9cb7b5772a85",
+            "labels": [
+              "Images and\nassociated metadata"
+            ],
+            "source": {
+              "cell": "90207e65-3095-41d2-a441-d9705dac6cc4"
+            },
+            "target": {
+              "cell": "e1e7bdf1-a5e8-4ff3-a114-104f3bf25e83"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": "4 3"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "42f20e20-4dac-4f2b-842f-c23066e45bb5",
+            "source": {
+              "cell": "12d5a822-cd42-44fa-ad75-d2a5b52a8d41"
+            },
+            "target": {
+              "cell": "7c388522-fb79-4317-9bcd-50e5e66704f7"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Signed\ninfo about \ninstalled images",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "21f71a02-9ead-4ee4-911f-8d13d9ed0410",
+            "labels": [
+              "Signed\ninfo about \ninstalled images"
+            ],
+            "source": {
+              "cell": "4b80d8bd-18d2-4057-89fa-17231d409a35"
+            },
+            "target": {
+              "cell": "bc38d36f-2235-4225-a4ce-c68971252dcd"
+            }
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "OEM \ntrust boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "7d480a2b-c2af-4b7d-bab7-c261029b81f6",
+            "labels": [
+              "OEM \ntrust boundary"
+            ],
+            "source": {
+              "x": 660,
+              "y": -620
+            },
+            "target": {
+              "x": 700,
+              "y": 1100
+            },
+            "vertices": [
+              {
+                "x": 760,
+                "y": 150
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Time attestation",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "CAN/Eth",
+              "threats": [
+                {
+                  "id": "e0071711-571d-4b4a-a601-b535b2ca8be9",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker can sniff the packets being sent over the bus to pick up on patterns of how and when the time attestations are sent to the secondary ECU in order to plan an attack on either of the devices.",
+                  "mitigation": "Ensure that the time attestations are encrypted at rest and in transit between the onboard source of time and the secondary ECU. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 173,
+                  "score": ""
+                },
+                {
+                  "id": "4279a0a6-29a1-439a-97b1-df865b0415a6",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker with (physical) access can tamper with the time attestation data being sent over the channel, and throw the secondary ECU's synchronization off, leading to a disruption of the update cycle.",
+                  "mitigation": "Implement cryptographic hash functions and digital signatures to verify and ensure the integrity of the time attestation. The secondary should only use this time attestation if the signature and hashes are verified. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 172,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "4ff3f011-1af9-4ab5-829f-277764fb6ebc",
+            "labels": [
+              "Time attestation"
+            ],
+            "source": {
+              "cell": "7c388522-fb79-4317-9bcd-50e5e66704f7"
+            },
+            "target": {
+              "cell": "d52eba29-9f7a-4b56-8c87-10500090eb9f"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Information",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "06b0f1b8-4614-486a-b5bb-c5caf9889eef",
+            "labels": [
+              "Information"
+            ],
+            "source": {
+              "cell": "d0eb099c-9202-46fa-9d51-d78e96c082f9"
+            },
+            "target": {
+              "cell": "bd1483af-2fce-4f23-a4d7-43d1a7bda811"
+            },
+            "vertices": [
+              {
+                "x": 1290,
+                "y": 350
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Logs",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "CAN/ETH",
+              "threats": []
+            },
+            "id": "76842caf-f635-40f6-b998-50e241d1320a",
+            "labels": [
+              "Logs"
+            ],
+            "source": {
+              "cell": "bd1483af-2fce-4f23-a4d7-43d1a7bda811"
+            },
+            "target": {
+              "cell": "3137ed3e-8531-45ce-9891-63cabf070305"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Image",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "CAN/ETH",
+              "threats": [
+                {
+                  "id": "a92028a5-f64d-4e8c-b1dc-bd30b7e9ca1c",
+                  "title": "Eavesdrop attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker can get access to and read sensitive/confidential information intended for a particular ECU",
+                  "mitigation": "Ensure that the information being sent over any medium is encrypted, both in transit and at rest.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 208,
+                  "score": ""
+                },
+                {
+                  "id": "90f8da75-49ea-405a-9f3e-c41e53b930be",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker can intercept and alter the information (including signatures, hashes, files, logs, etc.) being sent over the medium and provide the secondary ECU incorrect information",
+                  "mitigation": "Use encryption and verification methods like verification of digital signatures and cryptographic hashes to ensure the integrity of the data.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 209,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "8b88b03a-ca52-479e-823a-a9d83867486f",
+            "labels": [
+              "Image"
+            ],
+            "source": {
+              "cell": "e99238c5-14b8-4540-a59f-5579a16063bc"
+            },
+            "target": {
+              "cell": "d52eba29-9f7a-4b56-8c87-10500090eb9f"
+            },
+            "vertices": [
+              {
+                "x": 1761.5,
+                "y": 269.9999999999993
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Update package",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "674de203-cba0-4417-b8f1-825f584fc90b",
+                  "title": "Eavesdrop attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker may attempt to intercept the data being sent over the communication channel, such as update packages and firmware images",
+                  "mitigation": "Ensure that the data being transmitted across the channel is encrypted using strong encryption protocols (eg, TLS) to protect data confidentiality and integrity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 105,
+                  "score": ""
+                },
+                {
+                  "id": "e8adb902-b66b-4f5d-9404-ed71c61b8833",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker may intercept and alter the data being shared over the channel, such as altering the software image or update package",
+                  "mitigation": "Employ end-to-end encryption for all data being transmitted. Use cryptographic hash functions and digital signatures as data integrity checks. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 106,
+                  "score": ""
+                },
+                {
+                  "id": "4474128f-92ef-416d-9007-c3a9d9545f1a",
+                  "title": "Endless data attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker may send the ECU a large amount of data until it runs out of storage, rendering it useless/Inoperative.",
+                  "mitigation": "Implement a limit of the maximum possible downloadable file size when receiving anything on the ECU",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 212,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "a5cdc6a8-d615-4852-958b-992d9d935767",
+            "labels": [
+              "Update package"
+            ],
+            "source": {
+              "cell": "4e2771cd-e3e3-4d36-906a-bc1d5677c2ad"
+            },
+            "target": {
+              "cell": "331fe8e3-7a22-4515-89df-4cae7704f5ce"
+            },
+            "vertices": [
+              {
+                "x": 1010,
+                "y": 82
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "ebe99ec8-a0dd-4317-b8c7-ab5a09e606f4",
+            "source": {
+              "cell": "09902364-274d-41b5-bd36-b0be86354044"
+            },
+            "target": {
+              "cell": "bd1483af-2fce-4f23-a4d7-43d1a7bda811"
+            },
+            "vertices": [
+              {
+                "x": 1220,
+                "y": 160
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Request for\nimage streaming",
+              "description": "For secondary ECUs with insufficient storage, Primary SHOULD wait for a request from the Secondary to stream the new image file to it.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "CAN/ETH",
+              "threats": []
+            },
+            "id": "40fe7fda-48fd-4f62-a66e-f775b56497be",
+            "labels": [
+              "Request for\nimage streaming"
+            ],
+            "source": {
+              "cell": "d0eb099c-9202-46fa-9d51-d78e96c082f9"
+            },
+            "target": {
+              "cell": "e99238c5-14b8-4540-a59f-5579a16063bc"
+            },
+            "vertices": [
+              {
+                "x": 1610,
+                "y": 259.9999999999993
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "e613c2aa-2e14-48cc-a50a-12effaf8ac22",
+            "source": {
+              "cell": "a56f5aeb-d593-4378-98fe-8b251da74faa"
+            },
+            "target": {
+              "cell": "4e2771cd-e3e3-4d36-906a-bc1d5677c2ad"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "cf1d566e-fa89-4e15-876c-883bf3b68605",
+            "source": {
+              "cell": "6ae6753f-bd10-4ac6-b54f-d6ce624b58b3"
+            },
+            "target": {
+              "cell": "4e2771cd-e3e3-4d36-906a-bc1d5677c2ad"
+            },
+            "vertices": [
+              {
+                "x": 310,
+                "y": -90
+              },
+              {
+                "x": 490,
+                "y": -90
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "fcb2395d-f5fe-4a28-b79e-98f04f644eb8",
+            "source": {
+              "cell": "5478a461-8631-4be5-888e-43011d4d0def"
+            },
+            "target": {
+              "cell": "4e2771cd-e3e3-4d36-906a-bc1d5677c2ad"
+            },
+            "vertices": [
+              {
+                "x": 350,
+                "y": -120
+              },
+              {
+                "x": 540,
+                "y": -80
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "74fd7ca2-9126-4453-8885-c112c97b4476",
+            "source": {
+              "cell": "84f30e01-99ca-4cba-8e0f-e0ccee869959"
+            },
+            "target": {
+              "cell": "4e2771cd-e3e3-4d36-906a-bc1d5677c2ad"
+            },
+            "vertices": [
+              {
+                "x": 320,
+                "y": 260
+              },
+              {
+                "x": 470,
+                "y": 260
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "6f78f69a-f5da-452a-b353-d9c57459bf58",
+            "source": {
+              "cell": "888848f0-e76d-4039-8848-f1af02afc9ca"
+            },
+            "target": {
+              "cell": "4e2771cd-e3e3-4d36-906a-bc1d5677c2ad"
+            },
+            "vertices": [
+              {
+                "x": 310,
+                "y": 280
+              },
+              {
+                "x": 520,
+                "y": 260
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": -4.499999999999318,
+              "y": 130
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Timestamp\nMetadata"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 12,
+            "id": "888848f0-e76d-4039-8848-f1af02afc9ca",
+            "data": {
+              "type": "tm.Store",
+              "name": "Timestamp\nMetadata",
+              "description": "Contains the filename and version number of the LATEST snapshot metadata file, along with at least one hash of the snapshot metadata file, with the hashing function used.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 160.00000000000057,
+              "y": 130
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Snapshot\nMetadata"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 13,
+            "id": "84f30e01-99ca-4cba-8e0f-e0ccee869959",
+            "data": {
+              "type": "tm.Store",
+              "name": "Snapshot\nMetadata",
+              "description": "Lists version numbers and filenames of all Targets metadata files. \n\nOn director for a vehicle, there will be only 1 Targets metadata file.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 160.00000000000057,
+              "y": -22
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Targets metadata"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 14,
+            "id": "6ae6753f-bd10-4ac6-b54f-d6ce624b58b3",
+            "data": {
+              "type": "tm.Store",
+              "name": "Targets metadata",
+              "description": "Metadata about all images to be installed on target vehicle",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "56f66e56-b27d-4d77-9c03-2ee53d55a44b",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker might tamper with targets metadata to alter the list of authorized updates, version information, or cryptographic hashes, allowing the distribution of unauthorized or malicious firmware.",
+                  "mitigation": "Implement cryptographic signatures and hash functions to ensure the integrity of targets metadata. Devices should verify these signatures and hashes before accepting and processing the metadata. Use secure storage and transmission channels to protect metadata from tampering.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 202,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": -4.499999999999318,
+              "y": -22
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Root metadata"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 15,
+            "id": "5478a461-8631-4be5-888e-43011d4d0def",
+            "data": {
+              "type": "tm.Store",
+              "name": "Root metadata",
+              "description": "root of trust for generating keys to be used by all other roles for signing metadata",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": true,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": -26.999999999999318,
+              "y": 457.99999999999943
+            },
+            "size": {
+              "width": 710,
+              "height": 570
+            },
+            "attrs": {
+              "text": {
+                "text": "Image repository"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 16,
+            "id": "6f49d775-b193-460a-9482-d27f5e54b937",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Image repository",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "7782a7a3-7834-4daa-93cb-4f486b395fb6",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker can spoof the image repository's identity and trick the director into thinking that it is communicating with the legitimate image server.",
+                  "mitigation": "Use mutual authentication protocols (like TLS with certificates), to ensure that primary ECU and the server ensure each other's identities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 178,
+                  "score": ""
+                },
+                {
+                  "id": "b16383d1-aa9f-4482-973b-9240892f32a3",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The image repository can deny having received a software package from the supplier, and deny having sent the image and metadata to the director",
+                  "mitigation": "Employ secure, proper logging and auditing mechanisms on the image repository. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 180,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 6.821210263296962e-13,
+              "y": 670
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Timestamp Metadata"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 17,
+            "id": "c0dc5030-330a-4f16-9087-775e86b6e1a3",
+            "data": {
+              "type": "tm.Store",
+              "name": "Timestamp Metadata",
+              "description": "Contains filename and version number of latest snapshot metadata file, along with one or more hashes of the snapshot metadata file, with the hashing function\n",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 194.9999999999999,
+              "y": 670
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Snapshot Metadata"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 18,
+            "id": "fa092bfa-99cc-462b-ae40-cd958a995dd3",
+            "data": {
+              "type": "tm.Store",
+              "name": "Snapshot Metadata",
+              "description": "Contains metadata about all targets metadata files in the image repository ",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 443.0000000000007,
+              "y": 528
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Targets Metadata"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 19,
+            "id": "8c5cd7c8-62bd-419d-8145-9ff37985af67",
+            "data": {
+              "type": "tm.Store",
+              "name": "Targets Metadata",
+              "description": "Information about all images to be installed on ECUs. On the Image repository, there will be multiple targets metadata files",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 6.821210263296962e-13,
+              "y": 528
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Root Metadata"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 20,
+            "id": "c49afc3c-84da-4c7d-af98-8423d3e23638",
+            "data": {
+              "type": "tm.Store",
+              "name": "Root Metadata",
+              "description": "root of trust for generating keys to be used by all other roles for signing metadata",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": true,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": -401,
+              "y": -199.99999999999875
+            },
+            "size": {
+              "width": 150,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Vehicle\nInventory Database"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 22,
+            "id": "4699e6aa-948a-4ce7-bb75-3ddaa5f5b418",
+            "data": {
+              "type": "tm.Store",
+              "name": "Vehicle\nInventory Database",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "363c027e-00a8-4111-b0b3-35969f278bd5",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker may alter the inventory database contents and affect mapping of VINs and associated software images.",
+                  "mitigation": "Employ strong physical security, ensure strong and effective access control is in place. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 141,
+                  "score": ""
+                },
+                {
+                  "id": "9955e8b5-1a59-4386-82c2-6e4bd6356611",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The OEM's vehicle inventory database can deny having received the vehicle version manifest for verification.",
+                  "mitigation": "Ensure secure and proper logging mechanisms are in place. Ensure that logs are timestamped",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 205,
+                  "score": ""
+                },
+                {
+                  "id": "ab91492a-a1cb-45ad-b569-c2118e40aa7b",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker can gain unauthorized access to the database and steal sensitive information such as VINs, their mapping with ECU IDs or owner names or software versions, etc. ",
+                  "mitigation": "Ensure that the data stored on the database is encrypted using strong encryption protocols. Implement strict access control mechanisms and make sure that only authorized personnel can access the inventory database",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 206,
+                  "score": ""
+                },
+                {
+                  "id": "93515146-8c55-47e3-a822-1638312a5c4e",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker can execute a denial of service attack on the inventory database by flooding it with too many requests, making it unavailable for working for a legitimate user",
+                  "mitigation": "Implement rate-limiting, traffic monitoring and filtering, etc. Use redundancy to ensure that the server to ensure availability. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 207,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": -61.50000000001518,
+              "y": -589.9999999999831
+            },
+            "size": {
+              "width": 720,
+              "height": 890
+            },
+            "attrs": {
+              "text": {
+                "text": "Director\nRepository"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 24,
+            "id": "c9ab3b4d-7924-4de4-b0f8-541785e33aa4",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Director\nRepository",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "8d97bb0b-70f1-43fa-8803-ec097999efae",
+                  "title": "Spoofing",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker can spoof the identity of the director role to impersonate an OEM and trick a vehicle into thinking that it is communicating with the OEM.",
+                  "mitigation": "Use mutual authentication protocols (like TLS with certificates), to ensure that primary ECU and the server ensure each other's identities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 118,
+                  "score": ""
+                },
+                {
+                  "id": "9440d75d-d6cc-485b-9a70-5229eb699e16",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The director can deny having ever received a vehicle version manifest or an updated image from the image repository. ",
+                  "mitigation": "Ensure secure logging and auditing mechanisms are implemented on the director, where all incoming messages must be able to be traced back to at least their immediate previous source. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 142,
+                  "score": ""
+                },
+                {
+                  "id": "1c5a1194-fa74-4705-9976-0267615244bf",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The director can deny having sent any update package to the vehicle ",
+                  "mitigation": "Ensure secure logging and auditing mechanisms are implemented on the director, where all incoming messages must be able to be traced back to at least their immediate previous source. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 150,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 558.5000000000007,
+              "y": 38
+            },
+            "size": {
+              "width": 80,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Packaging"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 25,
+            "id": "4e2771cd-e3e3-4d36-906a-bc1d5677c2ad",
+            "data": {
+              "type": "tm.Process",
+              "name": "Packaging",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "4e4f4b1f-c4d8-4150-b0c4-50895da2a794",
+                  "title": "Freeze attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Continue to send a properly signed, but old, update bundle to the ECUs, even if newer updates exist.",
+                  "mitigation": "Check the root and targets metadata files to ensure that the the update package being sent to the ECU is up to date. Also, if the new Timestamp metadata file has expired, discard it, abort the update cycle, and report the potential freeze attack.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 108,
+                  "score": ""
+                },
+                {
+                  "id": "54415fe9-326a-4b9a-a2ae-e67f89dab0b5",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Deny having packaged the metadata and update images together or having sent the package out to the primary ECU",
+                  "mitigation": "Ensure proper and secure logging and auditing mechanisms are in place",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 182,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 174.25000000000068,
+              "y": 528
+            },
+            "size": {
+              "width": 240,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Software images\nfor a config +\ncustom metadata"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 30,
+            "id": "1055f7e1-e736-4311-a20c-d4c4d6a9b2c5",
+            "data": {
+              "type": "tm.Store",
+              "name": "Software images\nfor a config +\ncustom metadata",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": true,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 2110,
+              "y": 148
+            },
+            "size": {
+              "width": 100,
+              "height": 120
+            },
+            "attrs": {
+              "text": {
+                "text": "Time source"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 31,
+            "id": "7c388522-fb79-4317-9bcd-50e5e66704f7",
+            "data": {
+              "type": "tm.Process",
+              "name": "Time source",
+              "description": "A secure way for ECUs to know the time. Could be any implementation of time",
+              "outOfScope": false,
+              "reasonOutOfScope": "It is assumed that the source of time is secure.",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "3982ef77-c42c-4aae-ae53-03bffbd448c2",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker can spoof the identity of this time source and lead an ECU to believe that it is interacting with the legitimate source of time",
+                  "mitigation": "Use mutual authentication mechanisms like TLS certificates, etc. to verify the authenticity of the source of time onboard the vehicle. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 133,
+                  "score": ""
+                },
+                {
+                  "id": "67946404-7720-471a-b40a-dc349fe815cf",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The time source could deny having received a particular time attestation from the external time server.",
+                  "mitigation": "Ensure descriptive and secure logging and auditing mechanisms are in place. These logs should be tamper-proof and include details of all attestations of time, including their sources and checksums.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 134,
+                  "score": ""
+                },
+                {
+                  "id": "e432b506-2dfb-4f07-ac5c-30d7ff977a4e",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "An attacker can intercept the time sent by the server to the vehicle and alter it in order to provide the incorrect time to the vehicle.",
+                  "mitigation": "Time data being transmitted must be encrypted and signed. Verify the checksum for the attestation received and forward the time to ECUs iff verification is successful.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 135,
+                  "score": ""
+                },
+                {
+                  "id": "9c089d71-93d7-4a8c-b7f0-b4e08858cdcb",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker could potentially gain elevated access to the onboard time source, allowing them to alter its functionality and manipulate system behavior, enabling further malicious activities.",
+                  "mitigation": "Implement proper access control for the onboard time source. Use secure, authenticated time sources and regularly verify the accuracy of the device’s system time against trusted servers.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 137,
+                  "score": ""
+                },
+                {
+                  "id": "3a374662-ca5d-4892-bcdc-502a5393d4e5",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker can intercept when and how the onboard time source synchronizes with the external time server, which can potentially aid in profiling and conducting attacks",
+                  "mitigation": "Encrypt time synchronization traffic to protect it from eavesdropping. Use secure protocols like NTS to ensure that time data is transmitted securely. Limit the disclosure of detailed time synchronization logs to authorized personnel.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 138,
+                  "score": ""
+                },
+                {
+                  "id": "ec98a962-6706-4784-8237-b126d9c0ba69",
+                  "title": "Denial of time",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker can launch a denial-of-service attack on the onboard time source by flooding it's memory, sending endless requests, etc. in an attempt to throw off the synchronization of the ECUs",
+                  "mitigation": "Employ DoS attack detection and prevention methods, implement rate-limiting, use redundancy if possible to ensure availability.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 170,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 325.00000000000057,
+              "y": 130
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Update image A +\nmetadata"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 39,
+            "id": "e1e7bdf1-a5e8-4ff3-a114-104f3bf25e83",
+            "data": {
+              "type": "tm.Store",
+              "name": "Update image A +\nmetadata",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "2befa20e-c8ae-43cb-8947-68b41e2ccdd8",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker can intercept and alter the image being sent from the image repository and the director could receive an outdated/incorrect image. ",
+                  "mitigation": "Check all relevant metadata (potentially all 4) to ensure that the director receives the appropriate image from the image repo. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 109,
+                  "score": ""
+                },
+                {
+                  "id": "51898d4a-cc3a-4ce2-af2e-502e15f0f072",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The director could deny ever receiving the update package from the image repository.",
+                  "mitigation": "Ensure clear, secure logging mechanisms are present on both parties to ensure that the origin of the package can be properly traced. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 117,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 419.9999999999999,
+              "y": 910.9999999999987
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Root \nrole/signing keys"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 40,
+            "id": "e030a2d3-baee-4a03-84d8-02f6489ef12e",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Root \nrole/signing keys",
+              "description": "Root of trust for producing and distributing public keys to root, targets, snapshot and timestamp roles and  signs the root metadata.\nMust be an offline key",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 303.7499999999999,
+              "y": 770
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Timestamp\nrole/signing keys"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 41,
+            "id": "475075af-f50a-4b65-b001-64744802f4f4",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Timestamp\nrole/signing keys",
+              "description": "Responsible for signing the timestamp metadata for the image repository",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 419.9999999999999,
+              "y": 770
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Snapshot \nrole/signing keys"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 42,
+            "id": "307408a9-983c-400d-9378-5d369c241997",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Snapshot \nrole/signing keys",
+              "description": "Responsible for signing the snapshot metadata for the image repository",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 537.4999999999999,
+              "y": 770
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Targets \nrole/signing keys"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 43,
+            "id": "1592da7c-6b5a-4696-81ec-7b940a891957",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Targets \nrole/signing keys",
+              "description": "Responsible for signing targets metadata for each image package",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 225.50000000000068,
+              "y": -529.0000000000013
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Root \nrole/signing keys"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 44,
+            "id": "cea98aef-1658-4971-acfe-1a8dfaa10381",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Root \nrole/signing keys",
+              "description": "Root of trust for producing and distributing public keys to root, targets, snapshot and timestamp roles and  signs the root metadata.\nMust be an offline key.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 100.00000000000091,
+              "y": -390
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Timestamp\nrole/signing keys"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 45,
+            "id": "fde5b34d-7c74-427f-97f5-3bb62061b326",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Timestamp\nrole/signing keys",
+              "description": "Responsible for signing the timestamp metadata for the director repository",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 225.50000000000068,
+              "y": -390
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Snapshot \nrole/signing keys"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 46,
+            "id": "1090cfa0-23ff-4ec0-a901-dc3350dab501",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Snapshot \nrole/signing keys",
+              "description": "Responsible for signing the snapshot metadata for the director repository",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 349.2500000000007,
+              "y": -390
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Targets \nrole/signing keys"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 47,
+            "id": "a77cd259-9821-4765-8eb5-d1be62ce65c2",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Targets \nrole/signing keys",
+              "description": "Responsible for signing targets metadata for each update package to send to a vehicle",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": [
+                {
+                  "id": "5ba71a67-9841-4fa7-8401-fca764f1a453",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker may spoof the targets role and make the director believe that it is interacting with the legitimate role.",
+                  "mitigation": "Employ zero-trust principles - verify signatures every time the targets role signs any metadata and use strong mutual authentication protocols like TLS.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 140,
+                  "score": ""
+                },
+                {
+                  "id": "bc893c10-db04-4bbb-8af0-b801079223ab",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The targets role can deny having signed any of the targets metadata for the update package ",
+                  "mitigation": "Ensure secure logging and auditing mechanisms are implemented on the director, where all incoming messages must be able to be traced back to at least their immediate previous source. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 151,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 48,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "e480264c-f32e-4fcf-9751-a2d7e1f05213",
+            "source": {
+              "cell": "cea98aef-1658-4971-acfe-1a8dfaa10381"
+            },
+            "target": {
+              "cell": "fde5b34d-7c74-427f-97f5-3bb62061b326"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 49,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "6436660f-86af-4aaa-8629-79c88d5a4c1a",
+            "source": {
+              "cell": "cea98aef-1658-4971-acfe-1a8dfaa10381"
+            },
+            "target": {
+              "cell": "1090cfa0-23ff-4ec0-a901-dc3350dab501"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 50,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "1a8e2bdc-4d42-496e-b59c-62efa0d25965",
+            "source": {
+              "cell": "cea98aef-1658-4971-acfe-1a8dfaa10381"
+            },
+            "target": {
+              "cell": "a77cd259-9821-4765-8eb5-d1be62ce65c2"
+            }
+          },
+          {
+            "position": {
+              "x": -197.99999999999977,
+              "y": 610
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Software supplier"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 51,
+            "id": "b1ef1e76-c9ee-4402-a8af-fdb72b22ae09",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Software supplier",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1616,
+              "y": -130.00000000000068
+            },
+            "size": {
+              "width": 110,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Full verification\nof package\nmetadata,\nimages & time"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 52,
+            "id": "2fe2b1e0-faa2-452d-939e-2f2b77f7752e",
+            "data": {
+              "type": "tm.Process",
+              "name": "Full verification\nof package\nmetadata,\nimages & time",
+              "description": "Primary ECUs have to perform full verification",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "523b7f76-402e-4a28-b541-fd83f2c9c124",
+                  "title": "Deny receiving update",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The ECU can deny having performed a full verification on the package received from the director repository",
+                  "mitigation": "Ensure proper, secure logging and auditing mechanisms are in place for every step of verification.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 164,
+                  "score": ""
+                },
+                {
+                  "id": "8d7a671c-9220-4416-92e5-059114e39a6e",
+                  "title": "Skip verification",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker with unauthorized access can bypass the full verification of the primary and make it either skip the process or make it perform partial verification",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 165,
+                  "score": ""
+                },
+                {
+                  "id": "56267a6a-ad19-4996-bcb0-8d6eb1d1e462",
+                  "title": "Rollback attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Cause an ECU to install a previously valid software revision that is older than the currently installed version.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 204,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1420,
+              "y": 380.0000000000134
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Secondary ECU\nSW and FW store"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 53,
+            "id": "4b80d8bd-18d2-4057-89fa-17231d409a35",
+            "data": {
+              "type": "tm.Store",
+              "name": "Secondary ECU\nSW and FW store",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1690,
+              "y": 397.99999999999943
+            },
+            "size": {
+              "width": 130,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Verify package\nmetadata,\nimages & time"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 54,
+            "id": "d52eba29-9f7a-4b56-8c87-10500090eb9f",
+            "data": {
+              "type": "tm.Process",
+              "name": "Verify package\nmetadata,\nimages & time",
+              "description": "Secondary ECUs can perform partial verification",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "bab6d61b-4e80-45fa-9467-c4f2070d418e",
+                  "title": "Rollback attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Cause an ECU to install a previously valid software revision that is older than the currently installed version",
+                  "mitigation": "Compare the root metadata (and the incremental counter in it), timestamp metadata received from the director about this update package",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 111,
+                  "score": ""
+                },
+                {
+                  "id": "6ec68d8f-3e24-4597-9ac7-f1482ee32739",
+                  "title": "Mix-and-max attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Install a malicious software bunch in which some of the software packages fail to interoperate properly.",
+                  "mitigation": "Check if the hashes and version number of the new Snapshot metadata file match the hashes and version number listed in the Timestamp metadata for the package. If they don't, raise a flag.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 112,
+                  "score": ""
+                },
+                {
+                  "id": "652c7b80-75d3-47b9-adb0-4d1d915016ad",
+                  "title": "Arbitrary software attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker can cause an ECU to install and run an arbitrary piece of software of the attacker's choice",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 131,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1420,
+              "y": 69.99999999999932
+            },
+            "size": {
+              "width": 100,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Prepare\nVehicle version\nmanifest"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 55,
+            "id": "bc38d36f-2235-4225-a4ce-c68971252dcd",
+            "data": {
+              "type": "tm.Process",
+              "name": "Prepare\nVehicle version\nmanifest",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1616,
+              "y": 69.99999999999932
+            },
+            "size": {
+              "width": 110,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Image\ndistribution"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 56,
+            "id": "e99238c5-14b8-4540-a59f-5579a16063bc",
+            "data": {
+              "type": "tm.Process",
+              "name": "Image\ndistribution",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "affb7a59-0091-4c20-908d-c7750fb4cdda",
+                  "title": "Freeze attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Cause an ECU to install a previously valid software revision that is older than the currently installed version.",
+                  "mitigation": "Check the root, timestamp and snapshot metadata to ensure that the package received is the latest update.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 124,
+                  "score": ""
+                },
+                {
+                  "id": "3ff40e65-17a8-4595-88e4-3154f7d40e7f",
+                  "title": "Mix-and-match attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Install a malicious software bundle which causes the update to not interoperate properly",
+                  "mitigation": "Compare the snapshots metadata from the director to ensure that all targets metadata files are the same as received from the update package.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 127,
+                  "score": ""
+                },
+                {
+                  "id": "5753bd6b-3a3e-41ad-b49c-b2d17c023cda",
+                  "title": "Spoofing ECU identity to secondary ECU",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Spoofing",
+                  "description": "An attacker may spoof the identity of the primary's image distribution process, and trick the secondaries into believing that they are receiving updates from a legitimate source.",
+                  "mitigation": "Use mutual authentication protocols (like TLS with certificates), to ensure that both ECUs ensure each other's identities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 162,
+                  "score": ""
+                },
+                {
+                  "id": "6babbffb-c037-46bc-8ea8-9573ffe58849",
+                  "title": "Partial bundle installation attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Install a valid (signed) update bundle, and then block selected updates within the bundle.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 203,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1280,
+              "y": -130.000000000002
+            },
+            "size": {
+              "width": 480,
+              "height": 330
+            },
+            "attrs": {
+              "text": {
+                "text": "Primary ECU"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 57,
+            "id": "09902364-274d-41b5-bd36-b0be86354044",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Primary ECU",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "782e415a-2b55-42fd-b557-390e345805c0",
+                  "title": "Spoofing of endpoints",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker could attempt to impersonate the legitimate communication endpoints (e.g., the update server or the device) to intercept or alter the data being transmitted over the communication channel",
+                  "mitigation": "Use mutual authentication protocols (e.g., TLS with client certificates) to ensure that both the device and the server verify each other's identities before establishing communication.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 90,
+                  "score": ""
+                },
+                {
+                  "id": "82402b02-c878-45ea-a33e-367dbb5d7435",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The primary ECU may deny having received an update package from the director.",
+                  "mitigation": "Ensure secure logging and auditing mechanisms are implemented on the director, where all incoming messages must be able to be traced back to at least their immediate previous source. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 143,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 2464,
+              "y": 178
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Time services"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": "4 3"
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 59,
+            "id": "12d5a822-cd42-44fa-ad75-d2a5b52a8d41",
+            "data": {
+              "type": "tm.Store",
+              "name": "Time services",
+              "description": "",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 63,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Vehicle version\nmanifest",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "674de203-cba0-4417-b8f1-825f584fc90b",
+                  "title": "Eavesdrop attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker may attempt to intercept the data being sent over the communication channel, such as update packages and firmware images",
+                  "mitigation": "Ensure that the data being transmitted across the channel is encrypted using strong encryption protocols (eg, TLS) to protect data confidentiality and integrity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 105,
+                  "score": ""
+                },
+                {
+                  "id": "e8adb902-b66b-4f5d-9404-ed71c61b8833",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker may intercept and alter the data being shared over the channel, such as altering the software image or update package",
+                  "mitigation": "Employ end-to-end encryption for all data being transmitted. Use cryptographic hash functions and digital signatures as data integrity checks. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 106,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "8dd2c06e-808e-49a6-b203-a06583240ab0",
+            "labels": [
+              "Vehicle version\nmanifest"
+            ],
+            "source": {
+              "cell": "331fe8e3-7a22-4515-89df-4cae7704f5ce"
+            },
+            "target": {
+              "cell": "c9ab3b4d-7924-4de4-b0f8-541785e33aa4"
+            },
+            "vertices": [
+              {
+                "x": 1010,
+                "y": -250
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 1390,
+              "y": 357.99999999999955
+            },
+            "size": {
+              "width": 460,
+              "height": 200
+            },
+            "attrs": {
+              "text": {
+                "text": "Secondary ECU"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 64,
+            "id": "d0eb099c-9202-46fa-9d51-d78e96c082f9",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Secondary ECU",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "782e415a-2b55-42fd-b557-390e345805c0",
+                  "title": "Spoofing of endpoints",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker can spoof the identity of the secondary (to the primary) and cause the primary to think it is communicating with a legitimate secondary ECU.",
+                  "mitigation": "Use mutual authentication protocols (e.g., TLS with client certificates) to ensure that both ECUs verify each other's identities before establishing communication.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 90,
+                  "score": ""
+                },
+                {
+                  "id": "82402b02-c878-45ea-a33e-367dbb5d7435",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The secondary ECU may deny having received an update package from the primary.",
+                  "mitigation": "Ensure secure logging and auditing mechanisms are implemented on the director, where all incoming messages must be able to be traced back to at least their immediate previous source. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 143,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1130,
+              "y": 397.99999999999943
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "storage service"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 65,
+            "id": "3137ed3e-8531-45ce-9891-63cabf070305",
+            "data": {
+              "type": "tm.Store",
+              "name": "storage service",
+              "description": "onboard logger service - may or may not be a standalone process/device",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": true,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "bab06230-2cac-43f5-8310-3dff524daa20",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker/unauthorized actor can access and read logs and gain crucial information which can help plan out attacks, or provide the attacker confidential information",
+                  "mitigation": "Use strong asymmetric key encryption when storing logs to ensure that nobody except intended parties are able to read the logs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 193,
+                  "score": ""
+                },
+                {
+                  "id": "163f426c-cd38-485e-acbd-3fb76741e060",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "An attacker can try to alter the contents of the log, to hide any audit trail of attacks/malicious activity carried out elsewhere",
+                  "mitigation": "Implement cryptographic techniques such as hashing and digital signatures to ensure the integrity of log files. Store logs in a secure, tamper-evident environment and use append-only logs where possible. Ensure strict access control for logs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 194,
+                  "score": ""
+                },
+                {
+                  "id": "0cf43be2-cd16-4154-a192-a1f29c353945",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": " An attacker could overwhelm the logging system with excessive data, making it difficult to store or analyze logs, thereby disrupting monitoring and incident response efforts.",
+                  "mitigation": "Implement rate-limiting and log rotation to manage the volume of logging data. Monitor for abnormal logging patterns.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 195,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 68,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Time attestation",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "CAN/Eth",
+              "threats": [
+                {
+                  "id": "e0071711-571d-4b4a-a601-b535b2ca8be9",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker can sniff the packets being sent over the bus to pick up on patterns of how and when the time attestations are sent to the secondary ECU in order to plan an attack on either of the devices.",
+                  "mitigation": "Ensure that the time attestations are encrypted at rest and in transit between the onboard source of time and the secondary ECU. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 173,
+                  "score": ""
+                },
+                {
+                  "id": "4279a0a6-29a1-439a-97b1-df865b0415a6",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker with (physical) access can tamper with the time attestation data being sent over the channel, and throw the secondary ECU's synchronization off, leading to a disruption of the update cycle.",
+                  "mitigation": "Implement cryptographic hash functions and digital signatures to verify and ensure the integrity of the time attestation. The secondary should only use this time attestation if the signature and hashes are verified. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 172,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "233d1b6c-abe8-4d2f-989d-edec60ee5e74",
+            "labels": [
+              "Time attestation"
+            ],
+            "source": {
+              "cell": "7c388522-fb79-4317-9bcd-50e5e66704f7"
+            },
+            "target": {
+              "cell": "2fe2b1e0-faa2-452d-939e-2f2b77f7752e"
+            }
+          },
+          {
+            "position": {
+              "x": 1160,
+              "y": 220.00000000000168
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Logger"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 69,
+            "id": "bd1483af-2fce-4f23-a4d7-43d1a7bda811",
+            "data": {
+              "type": "tm.Process",
+              "name": "Logger",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "133c4836-e7f8-47bd-a566-5dd57b5243e8",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker can cause the logging process to do something that's out of it's scope, or make it cause harm. The attacker may also attempt to get access to sensitive information and bypass system controls",
+                  "mitigation": "Use role-based access control (RBAC) to limit who can access and manage the logging systems. Ensure logging systems run with the least privilege necessary. Regularly audit the access and configuration of logging systems to detect unauthorized changes",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 197,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 330.49999999999966,
+              "y": -22
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Update image B +\nmetadata"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "a56f5aeb-d593-4378-98fe-8b251da74faa",
+            "data": {
+              "type": "tm.Store",
+              "name": "Update image B +\nmetadata",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "2befa20e-c8ae-43cb-8947-68b41e2ccdd8",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker can intercept and alter the image being sent from the image repository and the director could receive an outdated/incorrect image. ",
+                  "mitigation": "Check all relevant metadata (potentially all 4) to ensure that the director receives the appropriate image from the image repo. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 109,
+                  "score": ""
+                },
+                {
+                  "id": "51898d4a-cc3a-4ce2-af2e-502e15f0f072",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The director could deny ever receiving the update package from the image repository.",
+                  "mitigation": "Ensure clear, secure logging mechanisms are present on both parties to ensure that the origin of the package can be properly traced. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 117,
+                  "score": ""
+                }
+              ]
+            },
+            "zIndex": 70
+          }
+        ],
+        "description": ""
+      }
+    ],
+    "diagramTop": 3,
+    "reviewer": "Phil",
+    "threatTop": 215
+  }
+}
